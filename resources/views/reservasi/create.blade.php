@@ -78,7 +78,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Tambah Reservasi</h1>
+        <h1>Tambah Reservassi</h1>
 
         <form action="{{ route('reservasi.store') }}" method="POST">
             @csrf
