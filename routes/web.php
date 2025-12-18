@@ -6,9 +6,9 @@ use App\Http\Controllers\KamarController;
 use App\Http\Controllers\TamuController;
 use App\Http\Controllers\ReservasiController;
 
-// Halaman publik
+// Halaman publik - Redirect ke login
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/login');
 });
 
 // Dashboard
