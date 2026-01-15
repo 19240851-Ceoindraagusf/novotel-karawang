@@ -12,3 +12,10 @@
     background-color: #0d6efd;
     border-radius: 10px;
 }
+body {
+    background-image: url('/images/bg-hotel.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
