@@ -79,6 +79,43 @@
         </div>
     </div>
 </div>
+<!-- ABOUT HOTEL -->
+<div class="card mt-4 shadow">
+    <div class="card-header bg-primary text-white">
+        <strong>Tentang Novotel Karawang</strong>
+    </div>
+    <style>
+.about-scroll {
+    max-height: 200px;
+    overflow-y: auto;
+}
+</style>
+
+    <div class="card-body about-scroll">
+        <p>
+            Novotel Karawang merupakan hotel bintang 4 yang terletak strategis
+            di pusat kota Karawang. Hotel ini menawarkan kenyamanan modern
+            dengan fasilitas lengkap untuk kebutuhan bisnis maupun liburan.
+        </p>
+
+        <p>
+            Dengan desain elegan dan pelayanan profesional, Novotel Karawang
+            memiliki berbagai tipe kamar yang nyaman, restoran, ruang meeting,
+            kolam renang, serta fasilitas kebugaran.
+        </p>
+
+        <p>
+            Lokasi hotel sangat dekat dengan kawasan industri, pusat perbelanjaan,
+            dan akses tol, sehingga menjadi pilihan ideal bagi tamu lokal maupun
+            internasional.
+        </p>
+
+        <p>
+            Visi kami adalah memberikan pengalaman menginap terbaik dengan
+            standar internasional dan keramahan khas Indonesia.
+        </p>
+    </div>
+</div>
 
 </body>
 </html>
