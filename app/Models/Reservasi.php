@@ -26,4 +26,10 @@ class Reservasi extends Model
     {
         return $this->belongsTo(Kamar::class);
     }
+
+    public function pembayaran()
+    {
+        return $this->hasOne(Pembayaran::class);
+    }
+
 }

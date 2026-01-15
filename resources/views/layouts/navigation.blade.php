@@ -18,6 +18,13 @@
                         Dashboard
                     </x-nav-link>
 
+                    <!-- PEMBAYARAN MENU -->
+                     <x-nav-link href="{{ route('pembayaran.index') }}" 
+                    :active="request()->routeIs('pembayaran.*')">
+                    Pembayaran
+                    </x-nav-link>
+
+
                     <!-- TAMU MENU -->
                     <x-nav-link href="{{ route('tamu.index') }}" :active="request()->routeIs('tamu.*')">
                         Tamu

@@ -5,6 +5,14 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\KamarController;
 use App\Http\Controllers\TamuController;
 use App\Http\Controllers\ReservasiController;
+use App\Http\Controllers\PembayaranController;
+
+//PEMBAYARAN
+Route::middleware(['auth', 'role:admin,resepsionis'])->group(function () {
+    Route::get('/pembayaran', [PembayaranController::class, 'index'])->name('pembayaran.index');
+    Route::get('/pembayaran/create/{reservasi}', [PembayaranController::class, 'create'])->name('pembayaran.create');
+    Route::post('/pembayaran', [PembayaranController::class, 'store'])->name('pembayaran.store');
+});
 
 // Halaman publik - Redirect ke login
 Route::get('/', function () {
