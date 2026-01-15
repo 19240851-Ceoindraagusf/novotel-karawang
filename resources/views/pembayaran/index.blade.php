@@ -7,7 +7,7 @@
         <table class="w-full border">
             <thead>
                 <tr class="bg-gray-200">
-                    <th class="border p-2">Reservasi</th>
+                    <th class="border p-2">Kamar</th>
                     <th class="border p-2">Tanggal</th>
                     <th class="border p-2">Total</th>
                     <th class="border p-2">Metode</th>

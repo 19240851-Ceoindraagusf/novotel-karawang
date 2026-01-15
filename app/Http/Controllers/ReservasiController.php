@@ -44,7 +44,9 @@ class ReservasiController extends Controller
         'kamar_id'    => $request->kamar_id,
         'check_in'    => $request->check_in,
         'check_out'   => $request->check_out,
-        'total_bayar' => $totalBayar, // ✅ Simpan ke database
+        'total_bayar' => $totalBayar,
+        'metode_pembayaran' => $request->metode_pembayaran,
+        'status_pembayaran' => $request->status_pembayaran,
     ]);
 
     return redirect()->route('reservasi.index')->with('success', 'Reservasi berhasil ditambahkan.');

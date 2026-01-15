@@ -160,6 +160,26 @@
                        required>
             </div>
 
+            <div class="form-group">
+                <label for="metode_pembayaran">Metode Pembayaran</label>
+                <select id="metode_pembayaran" name="metode_pembayaran" required>
+                    <option value="">-- Pilih Metode --</option>
+                    <option value="transfer" {{ old('metode_pembayaran', $reservasi->metode_pembayaran) == 'transfer' ? 'selected' : '' }}>Transfer</option>
+                    <option value="debit" {{ old('metode_pembayaran', $reservasi->metode_pembayaran) == 'debit' ? 'selected' : '' }}>Debit</option>
+                    <option value="cash" {{ old('metode_pembayaran', $reservasi->metode_pembayaran) == 'cash' ? 'selected' : '' }}>Cash</option>
+                    <option value="qris" {{ old('metode_pembayaran', $reservasi->metode_pembayaran) == 'qris' ? 'selected' : '' }}>QRIS</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="status_pembayaran">Status Pembayaran</label>
+                <select id="status_pembayaran" name="status_pembayaran" required>
+                    <option value="">-- Pilih Status --</option>
+                    <option value="lunas" {{ old('status_pembayaran', $reservasi->status_pembayaran) == 'lunas' ? 'selected' : '' }}>Lunas</option>
+                    <option value="belum lunas" {{ old('status_pembayaran', $reservasi->status_pembayaran) == 'belum lunas' ? 'selected' : '' }}>Belum Lunas</option>
+                </select>
+            </div>
+
             <div class="actions">
                 <button type="submit" class="btn">Perbarui</button>
                 <a href="{{ route('reservasi.index') }}" class="btn-cancel">Batal</a>

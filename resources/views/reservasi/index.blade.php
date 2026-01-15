@@ -142,6 +142,8 @@
                     <th>Kamar</th>
                     <th>Check In</th>
                     <th>Check Out</th>
+                    <th>Pembayaran</th>
+                    <th>Status</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -153,6 +155,8 @@
                         <td>{{ $r->kamar->nomor_kamar ?? '–' }}</td>
                         <td>{{ \Carbon\Carbon::parse($r->check_in)->format('d M Y') }}</td>
                         <td>{{ \Carbon\Carbon::parse($r->check_out)->format('d M Y') }}</td>
+                        <td>{{ $r->metode_pembayaran ? ucfirst($r->metode_pembayaran) : '-' }}</td>
+                        <td>{{ $r->status_pembayaran ? ucfirst($r->status_pembayaran) : '-' }}</td>
                         <td>
                             <div class="actions">
                                 <a href="{{ route('reservasi.edit', $r->id) }}" class="btn-sm btn-warning">Edit</a>
@@ -166,7 +170,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="6" style="text-align:center;">Belum ada data reservasi</td>
+                        <td colspan="8" style="text-align:center;">Belum ada data reservasi</td>
                     </tr>
                 @endforelse
             </tbody>
