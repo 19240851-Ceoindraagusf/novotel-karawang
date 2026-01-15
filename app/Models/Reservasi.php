@@ -14,7 +14,9 @@ class Reservasi extends Model
         'kamar_id',
         'check_in',
         'check_out',
-        'total_bayar', // ✅ Tambahkan ini!
+        'total_bayar',
+        'metode_pembayaran',
+        'status_pembayaran',
     ];
 
     public function tamu()

@@ -5,42 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tambah Reservasi - Novotel Karawang</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         body {
             font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #e6eaf3 0%, #f8fafc 100%);
+            background: #f5f5f5;
             padding: 20px;
         }
         .container {
             max-width: 600px;
             margin: 0 auto;
-            background: #fff;
+            background: white;
             padding: 30px;
-            border-radius: 18px;
-            box-shadow: 0 4px 16px rgba(0,53,128,0.07);
-        }
-        .header-novotel {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            margin-bottom: 20px;
-        }
-        .novotel-logo {
-            height: 48px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
         h1 {
-            color: #003580;
-            font-weight: bold;
-            margin-bottom: 0;
-            text-align: left;
-        }
-        .stars {
-            margin-left: 10px;
-            display: flex;
-            align-items: center;
-        }
-        .stars svg {
-            width: 18px; height: 18px; margin-right: 2px;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
         }
         .form-group {
             margin-bottom: 20px;
@@ -48,8 +34,8 @@
         label {
             display: block;
             margin-bottom: 5px;
-            color: #003580;
             font-weight: bold;
+            color: #555;
         }
         input, select {
             width: 100%;
@@ -58,32 +44,26 @@
             border-radius: 5px;
             font-size: 16px;
         }
-        input:focus, select:focus {
-            outline: none;
-            border-color: #003580;
-        }
         .btn {
             display: inline-block;
             padding: 10px 20px;
-            background: #003580;
+            background: #007bff;
             color: white;
             text-decoration: none;
-            border-radius: 10px;
+            border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
             border: none;
-            font-weight: 600;
-            transition: background 0.2s;
         }
         .btn:hover {
-            background: #00214d;
+            background: #0056b3;
         }
         .btn-cancel {
             background: #6c757d;
             text-decoration: none;
             display: inline-block;
             padding: 10px 20px;
-            border-radius: 10px;
+            border-radius: 5px;
             color: white;
             margin-left: 10px;
         }
@@ -98,16 +78,7 @@
 </head>
 <body>
     <div class="container">
-        <div class="header-novotel">
-            <img src="/build/assets/novotel-logo.svg" alt="Novotel Karawang Logo" class="novotel-logo">
-            <h1>Tambah Reservasi</h1>
-            <span class="stars">
-                <svg viewBox="0 0 24 24" fill="#FFD700" xmlns="http://www.w3.org/2000/svg"><polygon points="12,2 15,9 22,9.3 17,14.1 18.5,21 12,17.5 5.5,21 7,14.1 2,9.3 9,9"/></svg>
-                <svg viewBox="0 0 24 24" fill="#FFD700" xmlns="http://www.w3.org/2000/svg"><polygon points="12,2 15,9 22,9.3 17,14.1 18.5,21 12,17.5 5.5,21 7,14.1 2,9.3 9,9"/></svg>
-                <svg viewBox="0 0 24 24" fill="#FFD700" xmlns="http://www.w3.org/2000/svg"><polygon points="12,2 15,9 22,9.3 17,14.1 18.5,21 12,17.5 5.5,21 7,14.1 2,9.3 9,9"/></svg>
-                <svg viewBox="0 0 24 24" fill="#FFD700" xmlns="http://www.w3.org/2000/svg"><polygon points="12,2 15,9 22,9.3 17,14.1 18.5,21 12,17.5 5.5,21 7,14.1 2,9.3 9,9"/></svg>
-            </span>
-        </div>
+        <h1>Tambah Reservasi</h1>
 
         <form action="{{ route('reservasi.store') }}" method="POST">
             @csrf
@@ -145,6 +116,26 @@
             <div class="form-group">
                 <label for="check_out">Check Out</label>
                 <input type="date" id="check_out" name="check_out" required>
+            </div>
+
+            <div class="form-group">
+                <label for="metode_pembayaran">Metode Pembayaran</label>
+                <select id="metode_pembayaran" name="metode_pembayaran" required>
+                    <option value="">-- Pilih Metode --</option>
+                    <option value="transfer">Transfer</option>
+                    <option value="debit">Debit</option>
+                    <option value="cash">Cash</option>
+                    <option value="qris">QRIS</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="status_pembayaran">Status Pembayaran</label>
+                <select id="status_pembayaran" name="status_pembayaran" required>
+                    <option value="">-- Pilih Status --</option>
+                    <option value="lunas">Lunas</option>
+                    <option value="belum lunas">Belum Lunas</option>
+                </select>
             </div>
 
             <div class="actions">
