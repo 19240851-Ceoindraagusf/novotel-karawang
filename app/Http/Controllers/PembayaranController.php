@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pembayaran;
+use App\Models\Tamu;
 use App\Models\Reservasi;
 use Illuminate\Http\Request;
 
@@ -12,6 +13,19 @@ class PembayaranController extends Controller
     {
         $pembayarans = Pembayaran::with('reservasi')->get();
         return view('pembayaran.index', compact('pembayarans'));
+    }
+
+     // RIWAYAT PEMBAYARAN PER TAMU
+    public function riwayatPerTamu($tamu_id)
+    {
+        $tamu = Tamu::findOrFail($tamu_id);
+
+        $reservasi = Reservasi::with('kamar')
+            ->where('tamu_id', $tamu_id)
+            ->orderByDesc('created_at')
+            ->get();
+
+        return view('pembayaran.riwayat_per_tamu', compact('tamu', 'reservasi'));
     }
 
     public function create($reservasi_id)

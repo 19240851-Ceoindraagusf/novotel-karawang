@@ -9,6 +9,8 @@ class Reservasi extends Model
 {
     use HasFactory;
 
+    protected $table = 'reservasis';
+
     protected $fillable = [
         'tamu_id',
         'kamar_id',
@@ -17,6 +19,7 @@ class Reservasi extends Model
         'total_bayar',
         'metode_pembayaran',
         'status_pembayaran',
+        'status',
     ];
 
     public function tamu()
@@ -30,8 +33,7 @@ class Reservasi extends Model
     }
 
     public function pembayaran()
-    {
-        return $this->hasOne(Pembayaran::class);
-    }
-
+{
+    return $this->hasOne(Pembayaran::class);
+}
 }

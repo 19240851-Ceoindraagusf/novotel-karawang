@@ -132,7 +132,8 @@
         @endif
 
         <a href="{{ route('tamu.create') }}" class="btn">+ Tambah Tamu Baru</a>
-        <a href="{{ route('dashboard') }}" class="btn btn-dashboard">← Kembali ke Dashboard</a>
+        <a href="{{ route('dashboard') }}" class="btn btn-dashboard">      Dashboard</a>
+</a>
 
         <table>
             <thead>
@@ -146,17 +147,20 @@
                 </tr>
             </thead>
             <tbody>
-                @forelse($tamus as $index => $tamu)
+                @forelse($tamus as $index => $t)
+      
+
                     <tr>
                         <td>{{ $index + 1 }}</td>
-                        <td>{{ $tamu->nama }}</td>
-                        <td>{{ $tamu->alamat }}</td>
-                        <td>{{ $tamu->telepon }}</td>
-                        <td>{{ $tamu->email }}</td>
+                        <td>{{ $t->nama }}</td>
+                        <td>{{ $t->alamat }}</td>
+                        <td>{{ $t->telepon }}</td>
+                        <td>{{ $t->email }}</td>
                         <td>
+                  
                             <div class="actions">
-                                <a href="{{ route('tamu.edit', $tamu->id) }}" class="btn-sm btn-warning">Edit</a>
-                                <form action="{{ route('tamu.destroy', $tamu->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Yakin ingin menghapus tamu ini?')">
+                                <a href="{{ route('tamu.edit', $t->id) }}" class="btn-sm btn-warning">Edit</a>
+                                <form action="{{ route('tamu.destroy', $t->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Yakin ingin menghapus tamu ini?')">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn-sm btn-danger">Hapus</button>
@@ -171,6 +175,9 @@
                 @endforelse
             </tbody>
         </table>
+    </div>
+</body>
+</html> </table>
     </div>
 </body>
 </html>

@@ -7,6 +7,10 @@ use App\Http\Controllers\TamuController;
 use App\Http\Controllers\ReservasiController;
 use App\Http\Controllers\PembayaranController;
 
+// RIWAYAT PEMBAYARAN PER TAMU
+Route::get('/tamu/{id}/riwayat-pembayaran', [PembayaranController::class, 'riwayatPerTamu'])
+    ->name('pembayaran.riwayat');
+
 //PEMBAYARAN
 Route::middleware(['auth', 'role:admin,resepsionis'])->group(function () {
     Route::get('/pembayaran', [PembayaranController::class, 'index'])->name('pembayaran.index');
@@ -40,6 +44,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
 
 // 👩‍💼 RESEPSIONIS: Bisa lihat, tambah, edit reservasi — TIDAK BISA hapus
 Route::middleware(['auth', 'role:resepsionis'])->group(function () {
+    Route::resource('reservasi', ReservasiController::class)->middleware('auth');
     Route::get('/reservasi', [ReservasiController::class, 'index'])->name('reservasi.index');
     Route::get('/reservasi/create', [ReservasiController::class, 'create'])->name('reservasi.create');
     Route::post('/reservasi', [ReservasiController::class, 'store'])->name('reservasi.store');

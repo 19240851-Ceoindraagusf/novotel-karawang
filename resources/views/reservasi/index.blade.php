@@ -155,7 +155,12 @@
                         <td>{{ $r->kamar->nomor_kamar ?? '–' }}</td>
                         <td>{{ \Carbon\Carbon::parse($r->check_in)->format('d M Y') }}</td>
                         <td>{{ \Carbon\Carbon::parse($r->check_out)->format('d M Y') }}</td>
-                        <td>{{ $r->metode_pembayaran ? ucfirst($r->metode_pembayaran) : '-' }}</td>
+                        <td>@if($r->metode_pembayaran)
+    {{ strtoupper($r->metode_pembayaran) }}
+@else
+    <em>Belum dipilih</em>
+@endif
+</td>
                         <td>{{ $r->status_pembayaran ? ucfirst($r->status_pembayaran) : '-' }}</td>
                         <td>
                             <div class="actions">
