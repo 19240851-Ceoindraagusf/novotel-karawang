@@ -160,7 +160,7 @@
         @endif
 
         <a href="{{ route('kamar.create') }}" class="btn">+ Tambah Kamar Baru</a>
-        <a href="{{ route('dashboard') }}" class="btn" style="background:#6c757d;">← Kembali ke Dashboard</a>
+        <a href="{{ route('dashboard') }}" class="btn" style="background:#6c757d;">Kembali ke Dashboard</a>
 
         <table>
             <thead>

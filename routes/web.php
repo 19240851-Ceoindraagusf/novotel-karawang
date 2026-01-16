@@ -6,6 +6,13 @@ use App\Http\Controllers\KamarController;
 use App\Http\Controllers\TamuController;
 use App\Http\Controllers\ReservasiController;
 use App\Http\Controllers\PembayaranController;
+use App\Http\Controllers\InvoiceController;
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/invoice/{id}', [InvoiceController::class, 'cetak'])
+        ->name('invoice.cetak');
+});
+
 
 // RIWAYAT PEMBAYARAN PER TAMU
 Route::get('/tamu/{id}/riwayat-pembayaran', [PembayaranController::class, 'riwayatPerTamu'])

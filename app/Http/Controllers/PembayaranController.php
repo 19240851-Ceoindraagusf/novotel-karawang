@@ -9,6 +9,19 @@ use Illuminate\Http\Request;
 
 class PembayaranController extends Controller
 {
+     public function cetakInvoice(Reservasi $reservasi)
+    {
+        $reservasi->load(['tamu', 'kamar']);
+
+        $pdf = Pdf::loadView('pembayaran.invoice', [
+            'reservasi' => $reservasi
+        ]);
+
+        return $pdf->download(
+            'Invoice_Reservasi_' . $reservasi->id . '.pdf'
+        );
+    }
+    
     public function index()
     {
         $pembayarans = Pembayaran::with('reservasi')->get();

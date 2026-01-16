@@ -6,6 +6,7 @@ use App\Models\Reservasi;
 use App\Models\Tamu;
 use App\Models\Kamar;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class ReservasiController extends Controller
 {
@@ -22,34 +23,31 @@ class ReservasiController extends Controller
     return view('reservasi.create', compact('tamus', 'kamars'));
 }
 
+
 public function store(Request $request)
 {
     $kamar = Kamar::findOrFail($request->kamar_id);
 
-    $checkIn = \Carbon\Carbon::parse($request->check_in);
-    $checkOut = \Carbon\Carbon::parse($request->check_out);
-    $jumlahHari = $checkOut->diffInDays($checkIn);
+    $checkIn  = Carbon::parse($request->check_in);
+    $checkOut = Carbon::parse($request->check_out);
 
-    $totalBayar = $kamar->harga * $jumlahHari;
+    $malam = max(1, $checkIn->diffInDays($checkOut));
+    $total = $malam * $kamar->harga;
 
-   Reservasi::create([
-    'tamu_id' => $request->tamu_id,
-    'kamar_id' => $request->kamar_id,
-    'check_in' => $request->check_in,
-    'check_out' => $request->check_out,
-
-    'status' => 'pending',
-
-    // 🔥 INI KUNCI UTAMA
-    'metode_pembayaran' => $request->metode_pembayaran,
-    'status_pembayaran' => $request->status_pembayaran,
-
-
-]);
+    Reservasi::create([
+        'tamu_id' => $request->tamu_id,
+        'kamar_id' => $request->kamar_id,
+        'check_in' => $request->check_in,
+        'check_out' => $request->check_out,
+        'total_harga' => $total,
+        'metode_pembayaran' => $request->metode_pembayaran,
+        'status_pembayaran' => 'lunas'
+    ]);
 
     return redirect()->route('reservasi.index')
-        ->with('success', 'Reservasi berhasil ditambahkan');
+        ->with('success', 'Reservasi berhasil disimpan');
 }
+
 
 
 

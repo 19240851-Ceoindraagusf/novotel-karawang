@@ -132,7 +132,7 @@
         @endif
 
         <a href="{{ route('tamu.create') }}" class="btn">+ Tambah Tamu Baru</a>
-        <a href="{{ route('dashboard') }}" class="btn btn-dashboard">      Dashboard</a>
+        <a href="{{ route('dashboard') }}" class="btn btn-dashboard"> Kembali ke Dashboard</a>
 </a>
 
         <table>

@@ -132,8 +132,8 @@
         @endif
 
         <a href="{{ route('reservasi.create') }}" class="btn">+ Tambah Reservasi</a>
-        <a href="{{ route('dashboard') }}" class="btn btn-dashboard">← Kembali ke Dashboard</a>
-
+        <a href="{{ route('dashboard') }}" class="btn btn-dashboard">Kembali ke Dashboard</a>
+        
         <table>
             <thead>
                 <tr>
@@ -165,6 +165,13 @@
                         <td>
                             <div class="actions">
                                 <a href="{{ route('reservasi.edit', $r->id) }}" class="btn-sm btn-warning">Edit</a>
+                                
+                                 <a href="{{ route('invoice.cetak', $r->id) }}"
+           class="btn-sm"
+           style="background:#28a745;color:white;">
+           Cetak Invoice
+        </a>
+        
                                 <form action="{{ route('reservasi.destroy', $r->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Yakin ingin menghapus reservasi ini?')">
                                     @csrf
                                     @method('DELETE')
