@@ -161,16 +161,31 @@
     <em>Belum dipilih</em>
 @endif
 </td>
+
+@if($r->check_in_at && $r->check_out_at === null)
+<form action="{{ route('reservasi.checkout', $r->id) }}" method="POST" style="display:inline">
+    @csrf
+    <button class="btn btn-danger btn-sm"
+        onclick="return confirm('Check-out tamu sekarang?')">
+        Check-out
+    </button>
+</form>
+@endif
+
+
+
                         <td>{{ $r->status_pembayaran ? ucfirst($r->status_pembayaran) : '-' }}</td>
                         <td>
                             <div class="actions">
                                 <a href="{{ route('reservasi.edit', $r->id) }}" class="btn-sm btn-warning">Edit</a>
                                 
-                                 <a href="{{ route('invoice.cetak', $r->id) }}"
-           class="btn-sm"
-           style="background:#28a745;color:white;">
-           Cetak Invoice
-        </a>
+        <a href="{{ route('invoice.pdf', $r->id) }}"
+   target="_blank"
+   class="btn-sm"
+   style="background:#28a745;color:white;">
+   Cetak Invoice (PDF)
+</a>
+
         
                                 <form action="{{ route('reservasi.destroy', $r->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Yakin ingin menghapus reservasi ini?')">
                                     @csrf

@@ -9,9 +9,18 @@ use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\InvoiceController;
 
 Route::middleware(['auth'])->group(function () {
+    Route::get('/invoice/{id}/pdf', [InvoiceController::class, 'cetak'])
+        ->name('invoice.pdf');
+});
+
+
+Route::middleware(['auth'])->group(function () {
     Route::get('/invoice/{id}', [InvoiceController::class, 'cetak'])
         ->name('invoice.cetak');
 });
+
+Route::post('/reservasi/{id}/checkout', [ReservasiController::class, 'checkout'])
+    ->name('reservasi.checkout');
 
 
 // RIWAYAT PEMBAYARAN PER TAMU

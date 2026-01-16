@@ -81,4 +81,86 @@ public function store(Request $request)
         $reservasi->delete();
         return redirect()->route('reservasi.index')->with('success', 'Reservasi berhasil dihapus');
     }
+
+    public function checkIn($id)
+    {
+    $reservasi = Reservasi::with('kamar')->findOrFail($id);
+
+    // VALIDASI LOGIKA
+    if ($reservasi->check_in_at !== null) {
+        return back()->with('error', 'Tamu sudah check-in');
+    }
+
+    if ($reservasi->kamar->status !== 'reserved') {
+        return back()->with('error', 'Kamar belum siap untuk check-in');
+    }
+
+    // SIMPAN CHECK-IN
+    $reservasi->update([
+        'check_in_at' => now()
+    ]);
+
+    // UPDATE STATUS KAMAR
+    $reservasi->kamar->update([
+        'status' => 'occupied'
+    ]);
+
+    return back()->with('success', 'Check-in berhasil');
+    
+    }
+
+    /* ===============================
+       CHECK-OUT + DENDA + PAJAK
+    =============================== */
+    public function checkout($id)
+    {
+        $reservasi = Reservasi::with('kamar')->findOrFail($id);
+
+        if ($reservasi->check_out_at !== null) {
+            return back()->with('error', 'Tamu sudah check-out');
+        }
+
+        $now = Carbon::now();
+        $checkoutLimit = Carbon::parse($reservasi->check_out)->setTime(12, 0);
+
+        $hargaPerMalam = $reservasi->kamar->harga;
+        $subtotal = $reservasi->total_harga;
+
+        /* ===== HITUNG DENDA ===== */
+        $denda = 0;
+
+        if ($now->greaterThan($checkoutLimit)) {
+            if ($now->hour > 18) {
+                $denda = $hargaPerMalam; // 1 malam
+            } else {
+                $denda = $hargaPerMalam * 0.5; // 50%
+            }
+        }
+
+        /* ===== HITUNG PAJAK & SERVICE ===== */
+        $pajak = ($subtotal + $denda) * 0.10;          // 10%
+        $service = ($subtotal + $denda) * 0.05;        // 5%
+
+        $grandTotal = $subtotal + $denda + $pajak + $service;
+
+        /* ===== SIMPAN ===== */
+        $reservasi->update([
+            'check_out_at' => $now,
+            'denda' => $denda,
+            'pajak' => $pajak,
+            'service_charge' => $service,
+            'grand_total' => $grandTotal
+        ]);
+
+        /* ===== UPDATE STATUS KAMAR ===== */
+        $reservasi->kamar->update([
+            'status' => 'dirty'
+        ]);
+
+        return back()->with('success', 'Check-out berhasil');
+    }
+
+    
+
+
 }

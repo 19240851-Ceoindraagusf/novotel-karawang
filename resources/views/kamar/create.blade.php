@@ -146,18 +146,18 @@
                 @enderror
             </div>
 
-            <div class="form-group">
-                <label for="status">Status</label>
-                <select id="status" name="status" required>
-                    <option value="">Pilih Status</option>
-                    <option value="tersedia" {{ old('status') == 'tersedia' ? 'selected' : '' }}>Tersedia</option>
-                    <option value="terisi" {{ old('status') == 'terisi' ? 'selected' : '' }}>Terisi</option>
-                
-                </select>
-                @error('status')
-                    <div class="error">{{ $message }}</div>
-                @enderror
-            </div>
+            <div class="mb-3">
+    <label class="form-label">Status Kamar</label>
+    <select name="status" class="form-control" required>
+        <option value="">-- Pilih Status --</option>
+        <option value="available">Bisa dipesan</option>
+        <option value="reserved">Sudah dibooking</option>
+        <option value="occupied">Sedang ditempati</option>
+        <option value="dirty">Kotor / Belum dibersihkan</option>
+        <option value="maintenance">Rusak / Maintenance</option>
+    </select>
+</div>
+
 
             <div>
                 <button type="submit" class="btn btn-primary">Simpan</button>

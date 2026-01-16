@@ -3,185 +3,280 @@
 <head>
     <meta charset="UTF-8">
     <title>Invoice Pembayaran</title>
+
     <style>
         body {
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 13px;
-            color: #333;
-            background: #f5f6fa;
-            padding: 20px;
+            font-family: "Helvetica Neue", Arial, sans-serif;
+            font-size: 12px;
+            color: #1f2937;
+            background: #e5e7eb;
+            padding: 30px;
         }
 
-        .invoice-box {
-            background: #fff;
-            max-width: 800px;
+        .invoice-wrapper {
+            max-width: 820px;
             margin: auto;
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,.08);
+            background: #ffffff;
+            padding: 35px;
         }
 
+        /* HEADER */
         .header {
             display: flex;
             justify-content: space-between;
-            border-bottom: 2px solid #eee;
+            border-bottom: 2px solid #e5e7eb;
             padding-bottom: 15px;
-            margin-bottom: 20px;
         }
 
-        .hotel-name {
-            font-size: 22px;
-            font-weight: bold;
-            color: #0c4a6e;
+        .hotel-info h1 {
+            font-size: 20px;
+            margin: 0;
+            letter-spacing: 1px;
         }
 
-        .invoice-title {
+        .hotel-info small {
+            color: #6b7280;
+            line-height: 1.4;
+        }
+
+        .invoice-info {
             text-align: right;
         }
 
-        .invoice-title h2 {
+        .invoice-info h2 {
             margin: 0;
-            color: #111827;
+            font-size: 18px;
+            letter-spacing: 2px;
         }
 
         .status {
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 12px;
             display: inline-block;
-            margin-top: 5px;
+            margin-top: 6px;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 11px;
         }
 
-        .lunas {
+        .paid {
             background: #dcfce7;
             color: #166534;
         }
 
-        .belum {
+        .unpaid {
             background: #fee2e2;
             color: #991b1b;
+        }
+
+        /* SECTION */
+        .section {
+            margin-top: 25px;
+        }
+
+        .section-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            font-size: 12px;
+            border-bottom: 1px solid #e5e7eb;
+            padding-bottom: 5px;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 15px;
         }
 
-        table th {
-            background: #f1f5f9;
+        td, th {
+            padding: 8px 6px;
+        }
+
+        th {
             text-align: left;
-            padding: 10px;
-            font-size: 12px;
+            background: #f9fafb;
+            font-size: 11px;
+            text-transform: uppercase;
+            color: #374151;
         }
 
-        table td {
-            padding: 10px;
-            border-bottom: 1px solid #eee;
+        /* SUMMARY */
+        .summary {
+            margin-top: 10px;
+            width: 100%;
         }
 
-        .section-title {
-            margin-top: 25px;
-            font-weight: bold;
-            color: #0f172a;
-            font-size: 14px;
+        .summary td {
+            padding: 6px;
         }
 
-        .total {
+        .summary .label {
+            color: #6b7280;
+        }
+
+        .summary .value {
             text-align: right;
-            margin-top: 20px;
-            font-size: 15px;
-            font-weight: bold;
         }
 
+        .summary .grand-total {
+            font-weight: bold;
+            font-size: 14px;
+            border-top: 2px solid #111827;
+        }
+
+        /* FOOTER */
         .footer {
-            margin-top: 30px;
+            margin-top: 35px;
             text-align: center;
             font-size: 11px;
-            color: #64748b;
+            color: #6b7280;
+        }
+
+        /* BUTTON */
+        .actions {
+            text-align: center;
+            margin-top: 30px;
         }
 
         .btn-back {
-            display: inline-block;
-            margin-top: 25px;
-            padding: 8px 18px;
-            background: #2563eb;
-            color: white;
+            padding: 8px 22px;
+            border: 1px solid #111827;
+            background: transparent;
+            color: #111827;
             text-decoration: none;
-            border-radius: 6px;
-            font-size: 12px;
+            font-size: 11px;
+            letter-spacing: 1px;
+        }
+
+        .btn-back:hover {
+            background: #111827;
+            color: #fff;
+        }
+
+        @media print {
+            body {
+                background: #ffffff;
+                padding: 0;
+            }
+
+            .actions {
+                display: none;
+            }
         }
     </style>
 </head>
 <body>
 
-<div class="invoice-box">
+@php
+    $subtotal = $reservasi->total_harga ?? 0;
+    $denda = $reservasi->denda ?? 0;
+    $pajak = $subtotal * 0.10;
+    $service = $subtotal * 0.05;
+    $grandTotal = $subtotal + $pajak + $service + $denda;
+@endphp
+
+<div class="invoice-wrapper">
 
     <!-- HEADER -->
     <div class="header">
-        <div>
-            <div class="hotel-name">Novotel Karawang</div>
-            <small>Jl. Internasional No. 1, Karawang</small>
+        <div class="hotel-info">
+            <h1>NOVOTEL KARAWANG</h1>
+            <small>
+                Jl Interchange Karawang Barat<br>
+                Karawang, Jawa Barat<br>
+                Indonesia
+            </small>
         </div>
 
-        <div class="invoice-title">
+        <div class="invoice-info">
             <h2>INVOICE</h2>
-
             @if($reservasi->status_pembayaran === 'lunas')
-                <span class="status lunas">LUNAS</span>
+                <div class="status paid">PAID</div>
             @else
-                <span class="status belum">BELUM LUNAS</span>
+                <div class="status unpaid">UNPAID</div>
             @endif
         </div>
     </div>
 
-    <!-- DATA TAMU -->
-    <div class="section-title">Data Tamu</div>
-    <table>
-        <tr>
-            <td width="30%">Nama Tamu</td>
-            <td>: {{ $reservasi->tamu->nama }}</td>
-        </tr>
-        <tr>
-            <td>No. Telepon</td>
-            <td>: {{ $reservasi->tamu->telepon ?? '-' }}</td>
-        </tr>
-    </table>
-
-    <!-- DATA RESERVASI -->
-    <div class="section-title">Detail Reservasi</div>
-    <table>
-        <thead>
+    <!-- GUEST -->
+    <div class="section">
+        <div class="section-title">Guest Information</div>
+        <table>
             <tr>
-                <th>Kamar</th>
-                <th>Check In</th>
-                <th>Check Out</th>
-                <th>Metode Pembayaran</th>
+                <td width="30%">Guest Name</td>
+                <td>: {{ $reservasi->tamu->nama }}</td>
             </tr>
-        </thead>
-        <tbody>
             <tr>
-                <td>{{ $reservasi->kamar->nomor_kamar }}</td>
-                <td>{{ \Carbon\Carbon::parse($reservasi->check_in)->format('d M Y') }}</td>
-                <td>{{ \Carbon\Carbon::parse($reservasi->check_out)->format('d M Y') }}</td>
-                <td>{{ strtoupper($reservasi->metode_pembayaran ?? '-') }}</td>
+                <td>Phone</td>
+                <td>: {{ $reservasi->tamu->telepon ?? '-' }}</td>
             </tr>
-        </tbody>
-    </table>
-
-    <!-- TOTAL -->
-    <div class="total">
-        Total Pembayaran : Rp {{ number_format($reservasi->total_harga ?? 0, 0, ',', '.') }}
+        </table>
     </div>
 
-    <!-- FOOTER -->
+    <!-- RESERVATION -->
+    <div class="section">
+        <div class="section-title">Reservation Details</div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Room</th>
+                    <th>Check In</th>
+                    <th>Check Out</th>
+                    <th>Payment</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ $reservasi->kamar->nomor_kamar }}</td>
+                    <td>{{ \Carbon\Carbon::parse($reservasi->check_in)->format('d M Y') }}</td>
+                    <td>{{ \Carbon\Carbon::parse($reservasi->check_out)->format('d M Y') }}</td>
+                    <td>{{ strtoupper($reservasi->metode_pembayaran ?? '-') }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- PAYMENT SUMMARY -->
+    <div class="section">
+        <div class="section-title">Payment Summary</div>
+
+        <table class="summary">
+            <tr>
+                <td class="label">Room Charge</td>
+                <td class="value">Rp {{ number_format($subtotal,0,',','.') }}</td>
+            </tr>
+            <tr>
+                <td class="label">Tax (10%)</td>
+                <td class="value">Rp {{ number_format($pajak,0,',','.') }}</td>
+            </tr>
+            <tr>
+                <td class="label">Service Charge (5%)</td>
+                <td class="value">Rp {{ number_format($service,0,',','.') }}</td>
+            </tr>
+
+            @if($denda > 0)
+            <tr>
+                <td class="label">Overstay Penalty</td>
+                <td class="value">Rp {{ number_format($denda,0,',','.') }}</td>
+            </tr>
+            @endif
+
+            <tr class="grand-total">
+                <td>Total Amount</td>
+                <td class="value">
+                    Rp {{ number_format($grandTotal,0,',','.') }}
+                </td>
+            </tr>
+        </table>
+    </div>
+
     <div class="footer">
-        Terima kasih telah menginap di Novotel Karawang<br>
-        Invoice ini dicetak secara otomatis oleh sistem
+        Thank you for staying with us<br>
+        Printed on {{ now()->format('d M Y H:i') }}
     </div>
 
-    <div style="text-align:center;">
-       <a href="{{ url()->previous() }}" class="btn-back">← Kembali ke Reservasi</a>
+    <div class="actions">
+        <a href="{{ route('dashboard') }}" class="btn-back">
+            BACK TO DASHBOARD
+        </a>
     </div>
 
 </div>
