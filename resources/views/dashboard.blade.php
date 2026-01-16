@@ -114,6 +114,62 @@
                 Jl. Interchange Karawang Barat, Margakaya,<br>
                 Teluk Jambe Barat, Karawang, Jawa Barat 41361
             </div>
+
+            <!-- 🏨 HOTEL SERVICES -->
+<div class="card mt-4 mb-5">
+    <div class="card-header text-white">
+        Hotel Services & Information
+    </div>
+    <div class="card-body">
+
+        <div class="row">
+            <!-- Check-in / Check-out -->
+            <div class="col-md-6 mb-3">
+                <strong>Check-in / Check-out</strong>
+                <ul class="mt-2">
+                    <li>Check-in from <strong>02:00 PM</strong></li>
+                    <li>Check-out up to <strong>12:00 PM</strong></li>
+                </ul>
+            </div>
+
+            <!-- On Site Services -->
+            <div class="col-md-6 mb-3">
+                <strong>On-site Facilities</strong>
+                <ul class="mt-2">
+                    <li>Swimming Pool</li>
+                    <li>Restaurant</li>
+                    <li>Bar</li>
+                    <li>Fitness Center</li>
+                    <li>Meeting Rooms</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row mt-2">
+            <!-- Accessibility -->
+            <div class="col-md-6 mb-3">
+                <strong>Accessibility & Comfort</strong>
+                <ul class="mt-2">
+                    <li>Wheelchair Accessible</li>
+                    <li>Air Conditioning</li>
+                    <li>Free Wi-Fi</li>
+                </ul>
+            </div>
+
+            <!-- Additional Services -->
+            <div class="col-md-6 mb-3">
+                <strong>Additional Services</strong>
+                <ul class="mt-2">
+                    <li>Car Park</li>
+                    <li>Breakfast Available</li>
+                    <li>Room Service</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</div>
+
         </div>
     </div>
 
