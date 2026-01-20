@@ -146,6 +146,30 @@
                 @enderror
             </div>
 
+            <div class="form-group">
+                <label for="deskripsi">Deskripsi Kamar</label>
+                <textarea id="deskripsi" name="deskripsi" rows="4" placeholder="Deskripsi singkat">{{ old('deskripsi') }}</textarea>
+                @error('deskripsi')<div class="error">{{ $message }}</div>@enderror
+            </div>
+
+            <div class="form-group">
+                <label for="area">Area (mis. 'Dari 26 m²')</label>
+                <input type="text" id="area" name="area" value="{{ old('area') }}" placeholder="Contoh: Dari 26 m²">
+                @error('area')<div class="error">{{ $message }}</div>@enderror
+            </div>
+
+            <div class="form-group">
+                <label for="maks_orang">Maks. jumlah orang</label>
+                <input type="number" id="maks_orang" name="maks_orang" value="{{ old('maks_orang') }}" min="1" placeholder="Contoh: 3">
+                @error('maks_orang')<div class="error">{{ $message }}</div>@enderror
+            </div>
+
+            <div class="form-group">
+                <label for="fasilitas">Fasilitas (pisah dengan koma)</label>
+                <input type="text" id="fasilitas" name="fasilitas" value="{{ old('fasilitas') }}" placeholder="Contoh: Mini Bar, Pembuat kopi/teh, AC">
+                @error('fasilitas')<div class="error">{{ $message }}</div>@enderror
+            </div>
+
             <div class="mb-3">
                 <label class="form-label">Status Kamar</label>
                 <select name="status" class="form-control" required>

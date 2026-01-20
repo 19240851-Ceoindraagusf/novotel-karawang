@@ -37,6 +37,10 @@ class KamarController extends Controller
             'harga'       => 'required|numeric',
             'status'      => 'required',
             'foto'        => 'nullable|image|mimes:jpg,jpeg,png',
+            'deskripsi'   => 'nullable|string',
+            'area'        => 'nullable|string',
+            'maks_orang'  => 'nullable|integer',
+            'fasilitas'   => 'nullable|string',
         ]);
 
         if ($request->hasFile('foto')) {
@@ -73,18 +77,24 @@ class KamarController extends Controller
      */
     public function update(Request $request, Kamar $kamar): RedirectResponse
     {
-        $data = $request->all();
+        $data = $request->validate([
+            'nomor_kamar' => 'required',
+            'tipe_kamar'  => 'required',
+            'harga'       => 'required|numeric',
+            'status'      => 'required',
+            'foto'        => 'nullable|image|mimes:jpg,jpeg,png',
+            'deskripsi'   => 'nullable|string',
+            'area'        => 'nullable|string',
+            'maks_orang'  => 'nullable|integer',
+            'fasilitas'   => 'nullable|string',
+        ]);
+
         if ($request->hasFile('foto')) {
             $file = $request->file('foto');
-
-            // 🔴 PAKSA NAMA FILE BARU (AMAN)
             $nama = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
-
             $file->storeAs('public/kamar', $nama);
-
             $data['foto'] = $nama;
         }
-
 
         $kamar->update($data);
 

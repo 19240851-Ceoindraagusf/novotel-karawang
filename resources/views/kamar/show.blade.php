@@ -47,19 +47,24 @@
                 <div class="desc">
                     <h3 style="color:#003580;margin-bottom:8px">Deskripsi</h3>
                     <p>
-                        {{-- Jika Anda nanti menambahkan kolom `deskripsi` ke model, ganti bagian ini dengan `{{ $kamar->deskripsi }}` --}}
-                        Enjoy work and quietness. Our {{ $kamar->tipe_kamar ?? 'Superior' }} room mixes modern decor, ergonomic comfort and high end facilities: 42\" LED TV with International Channels, high speed Internet access. Up to 2 adults and 1 child.
+                        {{ $kamar->deskripsi ?? "Enjoy work and quietness. Our {$kamar->tipe_kamar} room mixes modern decor, ergonomic comfort and high end facilities." }}
                     </p>
 
                     <h4 style="margin-top:12px;color:#003580">Fitur utama</h4>
                     <ul>
-                        <li>Pemandangan: Sisi kota</li>
-                        <li>Maks. jumlah orang: 3</li>
-                        <li>Area: Dari 26 m²</li>
-                        <li>Tempat tidur: Tempat tidur ganda x1</li>
-                        <li>Makanan & Minuman: Fasilitas Makan dan Minum</li>
-                        <li>Fasilitas pembuat kopi/teh</li>
-                        <li>Mini Bar</li>
+                        <li>Pemandangan: {{ $kamar->area ? 'Sisi kota / '.$kamar->area : 'Sisi kota' }}</li>
+                        <li>Maks. jumlah orang: {{ $kamar->maks_orang ?? '3' }}</li>
+                        <li>Area: {{ $kamar->area ?? 'Dari 26 m²' }}</li>
+                        @if($kamar->fasilitas)
+                            @foreach(explode(',', $kamar->fasilitas) as $f)
+                                <li>{{ trim($f) }}</li>
+                            @endforeach
+                        @else
+                            <li>Tempat tidur: Tempat tidur ganda x1</li>
+                            <li>Makanan & Minuman: Fasilitas Makan dan Minum</li>
+                            <li>Fasilitas pembuat kopi/teh</li>
+                            <li>Mini Bar</li>
+                        @endif
                     </ul>
                 </div>
             </div>

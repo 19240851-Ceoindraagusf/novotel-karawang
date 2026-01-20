@@ -12,13 +12,19 @@
             padding: 20px;
         }
         .container {
-            max-width: 600px;
+            max-width: 980px;
             margin: 0 auto;
             background: #fff;
-            padding: 30px;
-            border-radius: 18px;
-            box-shadow: 0 4px 16px rgba(0,53,128,0.07);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(2,10,40,0.06);
         }
+        .grid{display:grid;grid-template-columns:1fr 360px;gap:20px;margin-top:14px}
+        .carousel{background:#eef3ff;border-radius:8px;padding:12px;display:flex;flex-direction:column;align-items:center}
+        .carousel img{max-width:100%;border-radius:6px}
+        .meta{background:#fafafa;padding:12px;border-radius:8px}
+        .meta h3{margin:0 0 8px 0;color:#003580}
+        .meta dl{display:grid;grid-template-columns:120px 1fr;row-gap:8px;column-gap:12px}
         .header-novotel {
             display: flex;
             align-items: center;
@@ -109,74 +115,61 @@
             </span>
         </div>
 
-        <form action="{{ route('kamar.update', $kamar->id) }}" method="POST">
+        <form action="{{ route('kamar.update', $kamar->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
-            <div class="form-group">
-                <label for="nomor_kamar">Nomor Kamar</label>
-                <input type="text" 
-                       id="nomor_kamar" 
-                       name="nomor_kamar" 
-                       value="{{ old('nomor_kamar', $kamar->nomor_kamar) }}" 
-                       required>
-            </div>
+            <div class="grid">
+                <div>
+                    <div class="carousel">
+                        @if($kamar->foto)
+                            <img src="{{ asset('storage/kamar/'.trim($kamar->foto)) }}" alt="Foto Kamar">
+                        @else
+                            <div style="padding:60px;color:#666">Tidak ada foto</div>
+                        @endif
+                        <div style="width:100%;margin-top:8px">
+                            <label style="display:block;margin-bottom:6px;color:#003580;font-weight:600">Ganti Foto Kamar</label>
+                            <input type="file" name="foto" accept="image/*">
+                        </div>
+                    </div>
 
-            <div class="form-group">
-                <label for="tipe_kamar">Tipe Kamar</label>
-                <input type="text" 
-                       id="tipe_kamar" 
-                       name="tipe_kamar" 
-                       value="{{ old('tipe_kamar', $kamar->tipe_kamar) }}" 
-                       placeholder="Contoh: Deluxe Room"
-                       required>
-            </div>
+                    <div class="desc" style="margin-top:12px">
+                        <h3 style="color:#003580;margin-bottom:8px">Deskripsi</h3>
+                        <textarea id="deskripsi" name="deskripsi" rows="6" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:6px">{{ old('deskripsi', $kamar->deskripsi) }}</textarea>
+                    </div>
 
-            <div class="form-group">
-                <label for="harga">Harga (Rp)</label>
-                <input type="number" 
-                       id="harga" 
-                       name="harga" 
-                       value="{{ old('harga', $kamar->harga) }}" 
-                       min="0" 
-                       required>
-            </div>
+                    <div style="margin-top:12px">
+                        <h4 style="margin-top:12px;color:#003580">Fitur utama</h4>
+                        <p style="color:#666">Masukkan fitur dipisah koma (contoh: Mini Bar, Pembuat kopi/teh, AC)</p>
+                        <input type="text" id="fasilitas" name="fasilitas" value="{{ old('fasilitas', $kamar->fasilitas) }}" placeholder="Contoh: Mini Bar, Pembuat kopi/teh, AC">
+                    </div>
+                </div>
 
-            <div class="mb-3">
-    <label class="form-label">Status Kamar</label>
-    <select name="status" class="form-control" required>
-        <option value="available" {{ $kamar->status == 'available' ? 'selected' : '' }}>
-            Bisa dipesan
-        </option>
-        <option value="reserved" {{ $kamar->status == 'reserved' ? 'selected' : '' }}>
-            Sudah dibooking
-        </option>
-        <option value="occupied" {{ $kamar->status == 'occupied' ? 'selected' : '' }}>
-            Sedang ditempati
-        </option>
-        <option value="dirty" {{ $kamar->status == 'dirty' ? 'selected' : '' }}>
-            Kotor / Belum dibersihkan
-        </option>
-        <option value="maintenance" {{ $kamar->status == 'maintenance' ? 'selected' : '' }}>
-            Rusak / Maintenance
-        </option>
-    </select>
-</div>
-            
-            <div class="actions">
-                <button type="submit" class="btn">Perbarui</button>
-                <a href="{{ route('kamar.index') }}" class="btn-cancel">Batal</a>
+                <aside class="meta">
+                    <h3>Informasi Kamar</h3>
+                    <dl>
+                        <dt>Nomor</dt><dd><input type="text" name="nomor_kamar" value="{{ old('nomor_kamar', $kamar->nomor_kamar) }}"></dd>
+                        <dt>Tipe</dt><dd><input type="text" name="tipe_kamar" value="{{ old('tipe_kamar', $kamar->tipe_kamar) }}"></dd>
+                        <dt>Harga</dt><dd><input type="number" name="harga" value="{{ old('harga', $kamar->harga) }}"></dd>
+                        <dt>Status</dt>
+                        <dd>
+                            <select name="status">
+                                <option value="available" {{ $kamar->status == 'available' ? 'selected' : '' }}>Bisa dipesan</option>
+                                <option value="reserved" {{ $kamar->status == 'reserved' ? 'selected' : '' }}>Sudah dibooking</option>
+                                <option value="occupied" {{ $kamar->status == 'occupied' ? 'selected' : '' }}>Sedang ditempati</option>
+                                <option value="dirty" {{ $kamar->status == 'dirty' ? 'selected' : '' }}>Kotor / Belum dibersihkan</option>
+                                <option value="maintenance" {{ $kamar->status == 'maintenance' ? 'selected' : '' }}>Rusak / Maintenance</option>
+                            </select>
+                        </dd>
+                        <dt>Area</dt><dd><input type="text" name="area" value="{{ old('area', $kamar->area) }}"></dd>
+                        <dt>Maks. Orang</dt><dd><input type="number" name="maks_orang" value="{{ old('maks_orang', $kamar->maks_orang) }}"></dd>
+                    </dl>
 
-                
-   @if($kamar->foto)
-    <img src="{{ asset('storage/kamar/'.$kamar->foto) }}" width="120">
-@else
-    <span>Tidak ada foto</span>
-@endif
-
-<input type="file" name="foto">
-
-            </div>
+                    <div style="margin-top:12px">
+                        <button type="submit" class="btn">Perbarui</button>
+                        <a href="{{ route('kamar.index') }}" class="btn-cancel">Batal</a>
+                    </div>
+                </aside>
             </div>
         </form>
     </div>
