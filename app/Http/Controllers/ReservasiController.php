@@ -105,7 +105,7 @@ class ReservasiController extends Controller
     public function destroy(Reservasi $reservasi)
     {
         $reservasi->kamar->update([
-            'status' => 'tersedia'
+            'status' => 'available'
         ]);
 
         $reservasi->delete();

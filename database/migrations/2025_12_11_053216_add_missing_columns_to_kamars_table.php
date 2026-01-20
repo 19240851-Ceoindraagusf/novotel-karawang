@@ -17,7 +17,7 @@ return new class extends Migration
                 $table->decimal('harga', 10, 2)->after('tipe_kamar');
             }
             if (!Schema::hasColumn('kamars', 'status')) {
-                $table->enum('status', ['tersedia', 'terisi'])->default('tersedia')->after('harga');
+                $table->enum('status', ['available', 'reserved', 'occupied', 'dirty', 'maintenance'])->default('available')->after('harga');
             }
         });
     }
