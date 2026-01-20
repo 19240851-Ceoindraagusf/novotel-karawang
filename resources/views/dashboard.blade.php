@@ -158,21 +158,21 @@
         </div>
     </div>
 
-    <!-- 📍 LOKASI HOTEL (DITAMBAHKAN, TANPA MERUBAH STRUKTUR) -->
-    <div class="card mt-4 mb-5">
-        <div class="card-header text-white">
+    <!-- 📍 LOKASI HOTEL -->
+    <div class="card mt-4 mb-5" style="border-radius:18px;overflow:hidden;">
+        <div class="card-header text-white" style="background:#003580;border:none;">
             Lokasi Hotel
         </div>
-        <div class="card-body">
+        <div class="card-body" style="padding:0;">
             <iframe
                 src="https://www.google.com/maps?q=Novotel%20Karawang&output=embed"
                 width="100%"
                 height="300"
-                style="border:0;border-radius:12px;"
+                style="border:0;display:block;"
                 loading="lazy">
             </iframe>
 
-            <div class="mt-3">
+            <div class="mt-3 p-3">
                 <strong>Alamat:</strong><br>
                 Jl. Interchange Karawang Barat, Margakaya,<br>
                 Teluk Jambe Barat, Karawang, Jawa Barat 41361
