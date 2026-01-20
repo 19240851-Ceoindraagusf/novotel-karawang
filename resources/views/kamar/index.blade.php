@@ -220,6 +220,7 @@
 
                         <td>
                             <div class="actions">
+                                <a href="{{ route('kamar.show', $kamar->id) }}" class="btn-sm btn-secondary">Detail</a>
                                 <a href="{{ route('kamar.edit', $kamar->id) }}" class="btn-sm btn-warning">Edit</a>
                                 <form action="{{ route('kamar.destroy', $kamar->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Yakin ingin menghapus?')">
                                     @csrf
@@ -231,14 +232,59 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="6" style="text-align:center;">Belum ada data kamar</td>
+                        <td colspan="7" style="text-align:center;">Belum ada data kamar</td>
                     </tr>
                 @endforelse
             </tbody>
         </table>
 
-        <div class="pagination">
-            {{ $kamars->links() }}
+        @php
+            $current = $kamars->currentPage();
+            $last = $kamars->lastPage();
+            $start = max(1, $current - 2);
+            $end = min($last, $current + 2);
+        @endphp
+
+        <div class="pagination-bar" style="margin-top:20px; display:flex; justify-content:space-between; align-items:center; gap:12px;">
+            <div class="results" style="color:#333; font-size:14px;">
+                Menampilkan <strong>{{ $kamars->firstItem() ?? 0 }}</strong> — <strong>{{ $kamars->lastItem() ?? 0 }}</strong> dari <strong>{{ $kamars->total() }}</strong> kamar
+            </div>
+
+            <div class="pagination" aria-label="Pagination">
+                @if($kamars->onFirstPage())
+                    <span class="disabled" style="padding:8px 12px; color:#999; border:1px solid #eee;">Sebelumnya</span>
+                @else
+                    <a href="{{ $kamars->previousPageUrl() }}" rel="prev">Sebelumnya</a>
+                @endif
+
+                @if($start > 1)
+                    <a href="{{ $kamars->url(1) }}">1</a>
+                    @if($start > 2)
+                        <span style="padding:8px 6px; color:#666;">…</span>
+                    @endif
+                @endif
+
+                @for($page = $start; $page <= $end; $page++)
+                    @if($page == $current)
+                        <span class="active">{{ $page }}</span>
+                    @else
+                        <a href="{{ $kamars->url($page) }}">{{ $page }}</a>
+                    @endif
+                @endfor
+
+                @if($end < $last)
+                    @if($end < $last - 1)
+                        <span style="padding:8px 6px; color:#666;">…</span>
+                    @endif
+                    <a href="{{ $kamars->url($last) }}">{{ $last }}</a>
+                @endif
+
+                @if($kamars->hasMorePages())
+                    <a href="{{ $kamars->nextPageUrl() }}" rel="next">Selanjutnya</a>
+                @else
+                    <span class="disabled" style="padding:8px 12px; color:#999; border:1px solid #eee;">Selanjutnya</span>
+                @endif
+            </div>
         </div>
     </div>
 </body>

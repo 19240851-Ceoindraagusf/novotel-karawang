@@ -29,27 +29,27 @@ class KamarController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-public function store(Request $request)
-{
-    $data = $request->validate([
-        'nomor_kamar' => 'required',
-        'tipe_kamar'  => 'required',
-        'harga'       => 'required|numeric',
-        'status'      => 'required',
-        'foto'        => 'nullable|image|mimes:jpg,jpeg,png',
-    ]);
+    public function store(Request $request)
+    {
+        $data = $request->validate([
+            'nomor_kamar' => 'required',
+            'tipe_kamar'  => 'required',
+            'harga'       => 'required|numeric',
+            'status'      => 'required',
+            'foto'        => 'nullable|image|mimes:jpg,jpeg,png',
+        ]);
 
-    if ($request->hasFile('foto')) {
-        $file = $request->file('foto');
-        $nama = time() . '.' . $file->extension();
-        $file->storeAs('public/kamar', $nama);
-        $data['foto'] = $nama;
+        if ($request->hasFile('foto')) {
+            $file = $request->file('foto');
+            $nama = time() . '.' . $file->extension();
+            $file->storeAs('public/kamar', $nama);
+            $data['foto'] = $nama;
+        }
+
+        Kamar::create($data);
+
+        return redirect()->route('kamar.index')->with('success', 'Kamar berhasil ditambahkan');
     }
-
-    Kamar::create($data);
-
-    return redirect()->route('kamar.index')->with('success', 'Kamar berhasil ditambahkan');
-}
 
 
     /**
@@ -73,23 +73,23 @@ public function store(Request $request)
      */
     public function update(Request $request, Kamar $kamar): RedirectResponse
     {
-    $data = $request->all();
-if ($request->hasFile('foto')) {
-    $file = $request->file('foto');
+        $data = $request->all();
+        if ($request->hasFile('foto')) {
+            $file = $request->file('foto');
 
-    // 🔴 PAKSA NAMA FILE BARU (AMAN)
-    $nama = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+            // 🔴 PAKSA NAMA FILE BARU (AMAN)
+            $nama = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
 
-    $file->storeAs('public/kamar', $nama);
+            $file->storeAs('public/kamar', $nama);
 
-    $data['foto'] = $nama;
-}
+            $data['foto'] = $nama;
+        }
 
 
-    $kamar->update($data);
+        $kamar->update($data);
 
-    return redirect()->route('kamar.index')
-        ->with('success', 'Data kamar berhasil diperbarui');
+        return redirect()->route('kamar.index')
+            ->with('success', 'Data kamar berhasil diperbarui');
     }
 
     /**

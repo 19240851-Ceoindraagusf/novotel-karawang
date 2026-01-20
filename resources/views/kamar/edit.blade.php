@@ -162,12 +162,12 @@
         </option>
     </select>
 </div>
-
+            
             <div class="actions">
                 <button type="submit" class="btn">Perbarui</button>
                 <a href="{{ route('kamar.index') }}" class="btn-cancel">Batal</a>
-            
-            
+
+                
    @if($kamar->foto)
     <img src="{{ asset('storage/kamar/'.$kamar->foto) }}" width="120">
 @else
@@ -176,6 +176,7 @@
 
 <input type="file" name="foto">
 
+            </div>
             </div>
         </form>
     </div>

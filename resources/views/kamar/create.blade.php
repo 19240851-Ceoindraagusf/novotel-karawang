@@ -119,7 +119,7 @@
             </div>
         @endif
 
-        <form action="{{ route('kamar.store') }}" method="POST">
+        <form action="{{ route('kamar.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <div class="form-group">
@@ -147,31 +147,29 @@
             </div>
 
             <div class="mb-3">
-    <label class="form-label">Status Kamar</label>
-    <select name="status" class="form-control" required>
-        <option value="">-- Pilih Status --</option>
-        <option value="available">Bisa dipesan</option>
-        <option value="reserved">Sudah dibooking</option>
-        <option value="occupied">Sedang ditempati</option>
-        <option value="dirty">Kotor / Belum dibersihkan</option>
-        <option value="maintenance">Rusak / Maintenance</option>
-    </select>
-</div>
+                <label class="form-label">Status Kamar</label>
+                <select name="status" class="form-control" required>
+                    <option value="">-- Pilih Status --</option>
+                    <option value="available">Bisa dipesan</option>
+                    <option value="reserved">Sudah dibooking</option>
+                    <option value="occupied">Sedang ditempati</option>
+                    <option value="dirty">Kotor / Belum dibersihkan</option>
+                    <option value="maintenance">Rusak / Maintenance</option>
+                </select>
+            </div>
 
-
-        <form action="{{ route('kamar.store') }}"
-      method="POST"
-      enctype="multipart/form-data">
-    @csrf
-
-    <label>Foto Kamar</label>
-    <input type="file" name="foto" accept="image/*">
+            <div class="form-group">
+                <label>Foto Kamar</label>
+                <input type="file" name="foto" accept="image/*">
+                @error('foto')
+                    <div class="error">{{ $message }}</div>
+                @enderror
+            </div>
 
             <div>
                 <button type="submit" class="btn btn-primary">Simpan</button>
                 <a href="{{ route('kamar.index') }}" class="btn btn-secondary">Batal</a>
             </div>
-</form>
         </form>
     </div>
 </body>
