@@ -1,10 +1,11 @@
 <style>
     body.login-novotel-bg {
         min-height: 100vh;
-        background: linear-gradient(135deg, #003580 0%, #0056b3 100%);
+        background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=1200&h=800&fit=crop') center/cover no-repeat;
         display: flex;
         align-items: center;
         justify-content: center;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     }
     .novotel-login-card {
         background: #fff;
