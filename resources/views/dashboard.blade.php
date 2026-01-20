@@ -54,7 +54,7 @@
             color: white;
         }
         .menu-btn-tamu {
-            background: linear-gradient(135deg, #196833 0%, #1a6a34 100%);
+            background: linear-gradient(135deg, #196833 0%, #134e27 100%);
         }
         .menu-btn-tamu:hover {
             background: linear-gradient(135deg, #1a6a34 0%, #0f5c1e 100%);
@@ -177,61 +177,63 @@
                 Jl. Interchange Karawang Barat, Margakaya,<br>
                 Teluk Jambe Barat, Karawang, Jawa Barat 41361
             </div>
-
-            <!-- 🏨 HOTEL SERVICES -->
-<div class="card mt-4 mb-5">
-    <div class="card-header text-white">
-        Hotel Services & Information
-    </div>
-    <div class="card-body">
-
-        <div class="row">
-            <!-- Check-in / Check-out -->
-            <div class="col-md-6 mb-3">
-                <strong>Check-in / Check-out</strong>
-                <ul class="mt-2">
-                    <li><i class="bi bi-clock-fill" style="margin-right:8px;color:#003580;"></i>Check-in from <strong>02:00 PM</strong></li>
-                    <li><i class="bi bi-door-closed" style="margin-right:8px;color:#003580;"></i>Check-out up to <strong>12:00 PM</strong></li>
-                </ul>
-            </div>
-
-            <!-- On Site Services -->
-            <div class="col-md-6 mb-3">
-                <strong>On-site Facilities</strong>
-                <ul class="mt-2">
-                    <li><i class="bi bi-water" style="margin-right:8px;color:#003580;"></i>Swimming Pool</li>
-                    <li><i class="bi bi-shop" style="margin-right:8px;color:#003580;"></i>Restaurant</li>
-                    <li><i class="bi bi-cup-hot-fill" style="margin-right:8px;color:#003580;"></i>Bar</li>
-                    <li><i class="bi bi-heart-pulse" style="margin-right:8px;color:#003580;"></i>Fitness Center</li>
-                    <li><i class="bi bi-people-fill" style="margin-right:8px;color:#003580;"></i>Meeting Rooms</li>
-                </ul>
-            </div>
         </div>
-
-        <div class="row mt-2">
-            <!-- Accessibility -->
-            <div class="col-md-6 mb-3">
-                <strong>Accessibility & Comfort</strong>
-                <ul class="mt-2">
-                    <li><i class="bi bi-universal-access" style="margin-right:8px;color:#003580;"></i>Wheelchair Accessible</li>
-                    <li><i class="bi bi-snow" style="margin-right:8px;color:#003580;"></i>Air Conditioning</li>
-                    <li><i class="bi bi-wifi" style="margin-right:8px;color:#003580;"></i>Free Wi-Fi</li>
-                </ul>
-            </div>
-
-            <!-- Additional Services -->
-            <div class="col-md-6 mb-3">
-                <strong>Additional Services</strong>
-                <ul class="mt-2">
-                    <li><i class="bi bi-car-front-fill" style="margin-right:8px;color:#003580;"></i>Car Park</li>
-                    <li><i class="bi bi-egg-fried" style="margin-right:8px;color:#003580;"></i>Breakfast Available</li>
-                    <li><i class="bi bi-bell-fill" style="margin-right:8px;color:#003580;"></i>Room Service</li>
-                </ul>
-            </div>
-        </div>
-
     </div>
-</div>
+
+    <!-- 🏨 HOTEL SERVICES -->
+    <div class="card mt-4 mb-5" style="border-radius:18px;overflow:hidden;">
+        <div class="card-header text-white" style="background:#003580;border:none;">
+            Hotel Services & Information
+        </div>
+        <div class="card-body">
+
+            <div class="row">
+                <!-- Check-in / Check-out -->
+                <div class="col-md-6 mb-3">
+                    <strong>Check-in / Check-out</strong>
+                    <ul class="mt-2">
+                        <li><i class="bi bi-clock-fill" style="margin-right:8px;color:#003580;"></i>Check-in from <strong>02:00 PM</strong></li>
+                        <li><i class="bi bi-door-closed" style="margin-right:8px;color:#003580;"></i>Check-out up to <strong>12:00 PM</strong></li>
+                    </ul>
+                </div>
+
+                <!-- On Site Services -->
+                <div class="col-md-6 mb-3">
+                    <strong>On-site Facilities</strong>
+                    <ul class="mt-2">
+                        <li><i class="bi bi-water" style="margin-right:8px;color:#003580;"></i>Swimming Pool</li>
+                        <li><i class="bi bi-shop" style="margin-right:8px;color:#003580;"></i>Restaurant</li>
+                        <li><i class="bi bi-cup-hot-fill" style="margin-right:8px;color:#003580;"></i>Bar</li>
+                        <li><i class="bi bi-heart-pulse" style="margin-right:8px;color:#003580;"></i>Fitness Center</li>
+                        <li><i class="bi bi-people-fill" style="margin-right:8px;color:#003580;"></i>Meeting Rooms</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="row mt-2">
+                <!-- Accessibility -->
+                <div class="col-md-6 mb-3">
+                    <strong>Accessibility & Comfort</strong>
+                    <ul class="mt-2">
+                        <li><i class="bi bi-universal-access" style="margin-right:8px;color:#003580;"></i>Wheelchair Accessible</li>
+                        <li><i class="bi bi-snow" style="margin-right:8px;color:#003580;"></i>Air Conditioning</li>
+                        <li><i class="bi bi-wifi" style="margin-right:8px;color:#003580;"></i>Free Wi-Fi</li>
+                    </ul>
+                </div>
+
+                <!-- Additional Services -->
+                <div class="col-md-6 mb-3">
+                    <strong>Additional Services</strong>
+                    <ul class="mt-2">
+                        <li><i class="bi bi-car-front-fill" style="margin-right:8px;color:#003580;"></i>Car Park</li>
+                        <li><i class="bi bi-egg-fried" style="margin-right:8px;color:#003580;"></i>Breakfast Available</li>
+                        <li><i class="bi bi-bell-fill" style="margin-right:8px;color:#003580;"></i>Room Service</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
 
         </div>
     </div>
