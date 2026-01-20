@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Dashboard Novotel Karawang</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <style>
         body {
             background: linear-gradient(135deg, #e6eaf3 0%, #f8fafc 100%);
@@ -127,8 +128,8 @@
             <div class="col-md-6 mb-3">
                 <strong>Check-in / Check-out</strong>
                 <ul class="mt-2">
-                    <li>Check-in from <strong>02:00 PM</strong></li>
-                    <li>Check-out up to <strong>12:00 PM</strong></li>
+                    <li><i class="bi bi-clock-fill" style="margin-right:8px;color:#003580;"></i>Check-in from <strong>02:00 PM</strong></li>
+                    <li><i class="bi bi-door-closed" style="margin-right:8px;color:#003580;"></i>Check-out up to <strong>12:00 PM</strong></li>
                 </ul>
             </div>
 
@@ -136,11 +137,11 @@
             <div class="col-md-6 mb-3">
                 <strong>On-site Facilities</strong>
                 <ul class="mt-2">
-                    <li>Swimming Pool</li>
-                    <li>Restaurant</li>
-                    <li>Bar</li>
-                    <li>Fitness Center</li>
-                    <li>Meeting Rooms</li>
+                    <li><i class="bi bi-water" style="margin-right:8px;color:#003580;"></i>Swimming Pool</li>
+                    <li><i class="bi bi-shop" style="margin-right:8px;color:#003580;"></i>Restaurant</li>
+                    <li><i class="bi bi-cup-hot-fill" style="margin-right:8px;color:#003580;"></i>Bar</li>
+                    <li><i class="bi bi-heart-pulse" style="margin-right:8px;color:#003580;"></i>Fitness Center</li>
+                    <li><i class="bi bi-people-fill" style="margin-right:8px;color:#003580;"></i>Meeting Rooms</li>
                 </ul>
             </div>
         </div>
@@ -150,9 +151,9 @@
             <div class="col-md-6 mb-3">
                 <strong>Accessibility & Comfort</strong>
                 <ul class="mt-2">
-                    <li>Wheelchair Accessible</li>
-                    <li>Air Conditioning</li>
-                    <li>Free Wi-Fi</li>
+                    <li><i class="bi bi-universal-access" style="margin-right:8px;color:#003580;"></i>Wheelchair Accessible</li>
+                    <li><i class="bi bi-snow" style="margin-right:8px;color:#003580;"></i>Air Conditioning</li>
+                    <li><i class="bi bi-wifi" style="margin-right:8px;color:#003580;"></i>Free Wi-Fi</li>
                 </ul>
             </div>
 
@@ -160,9 +161,9 @@
             <div class="col-md-6 mb-3">
                 <strong>Additional Services</strong>
                 <ul class="mt-2">
-                    <li>Car Park</li>
-                    <li>Breakfast Available</li>
-                    <li>Room Service</li>
+                    <li><i class="bi bi-car-front-fill" style="margin-right:8px;color:#003580;"></i>Car Park</li>
+                    <li><i class="bi bi-egg-fried" style="margin-right:8px;color:#003580;"></i>Breakfast Available</li>
+                    <li><i class="bi bi-bell-fill" style="margin-right:8px;color:#003580;"></i>Room Service</li>
                 </ul>
             </div>
         </div>
