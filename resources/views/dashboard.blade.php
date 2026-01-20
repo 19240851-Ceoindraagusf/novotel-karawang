@@ -28,6 +28,45 @@
             font-weight: 600;
             border-radius: 10px;
         }
+        .menu-btn {
+            padding: 15px 20px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            text-decoration: none;
+            color: white;
+        }
+        .menu-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+        .menu-btn-kamar {
+            background: linear-gradient(135deg, #0052cc 0%, #003d99 100%);
+        }
+        .menu-btn-kamar:hover {
+            background: linear-gradient(135deg, #003d99 0%, #002966 100%);
+            color: white;
+        }
+        .menu-btn-tamu {
+            background: linear-gradient(135deg, #196833 0%, #1a6a34 100%);
+        }
+        .menu-btn-tamu:hover {
+            background: linear-gradient(135deg, #1a6a34 0%, #0f5c1e 100%);
+            color: white;
+        }
+        .menu-btn-reservasi {
+            background: linear-gradient(135deg, #7ab7e6 0%, #0d5f6b 100%);
+        }
+        .menu-btn-reservasi:hover {
+            background: linear-gradient(135deg, #0d5f6b 0%, #074554 100%);
+            color: white;
+        }
     </style>
 </head>
 
@@ -72,11 +111,31 @@
                 </div>
                 <div class="card-body">
                     @if(Auth::user()->role == 'admin')
-                        <a href="{{ url('/admin/kamar') }}" class="btn btn-primary w-100 mb-2">Kamar</a>
-                        <a href="{{ url('/admin/tamu') }}" class="btn btn-success w-100 mb-2">Tamu</a>
-                        <a href="{{ url('/admin/reservasi') }}" class="btn btn-info w-100 mb-2">Reservasi</a>
+                        <div class="row g-3">
+                            <div class="col-md-6 d-flex">
+                                <a href="{{ url('/admin/kamar') }}" class="menu-btn menu-btn-kamar w-100">
+                                    <i class="bi bi-door-closed"></i>
+                                    Kamar
+                                </a>
+                            </div>
+                            <div class="col-md-6 d-flex">
+                                <a href="{{ url('/admin/tamu') }}" class="menu-btn menu-btn-tamu w-100">
+                                    <i class="bi bi-people-fill"></i>
+                                    Tamu
+                                </a>
+                            </div>
+                            <div class="col-md-12 d-flex">
+                                <a href="{{ url('/admin/reservasi') }}" class="menu-btn menu-btn-reservasi w-100">
+                                    <i class="bi bi-calendar-check"></i>
+                                    Reservasi
+                                </a>
+                            </div>
+                        </div>
                     @elseif(Auth::user()->role == 'resepsionis')
-                        <a href="{{ url('/reservasi') }}" class="btn btn-info w-100 mb-2">Reservasi</a>
+                        <a href="{{ url('/reservasi') }}" class="menu-btn menu-btn-reservasi w-100">
+                            <i class="bi bi-calendar-check"></i>
+                            Reservasi
+                        </a>
                     @endif
                 </div>
             </div>
