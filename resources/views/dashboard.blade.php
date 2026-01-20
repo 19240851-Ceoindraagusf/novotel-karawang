@@ -97,117 +97,46 @@
 
 <div class="container mt-4">
     <div class="row justify-content-center">
-        <div class="col-12 col-md-8">
+        <div class="col-md-8">
             <div class="text-center mb-4">
                 <h3 style="color:#003580;font-weight:bold;">
                     Selamat Datang, {{ Auth::user()->name }}
                 </h3>
                 <p>Role: <span class="badge bg-primary">{{ Auth::user()->role }}</span></p>
             </div>
-
-            <div class="d-flex justify-content-center">
-                <div class="card w-100" style="max-width:760px;">
-                    <div class="card-header text-white text-center">
-                        Menu Utama
-                    </div>
-                    <div class="card-body">
-                        @if(Auth::user()->role == 'admin')
-                            <div class="row g-3">
-                                <div class="col-6 d-flex">
-                                    <a href="{{ url('/admin/kamar') }}" class="menu-btn menu-btn-kamar w-100">
-                                        <i class="bi bi-door-closed"></i>
-                                        Kamar
-                                    </a>
-                                </div>
-                                <div class="col-6 d-flex">
-                                    <a href="{{ url('/admin/tamu') }}" class="menu-btn menu-btn-tamu w-100">
-                                        <i class="bi bi-people-fill"></i>
-                                        Tamu
-                                    </a>
-                                </div>
-                                <div class="col-12 d-flex justify-content-center">
-                                    <a href="{{ url('/admin/reservasi') }}" class="menu-btn menu-btn-reservasi" style="width:60%;">
-                                        <i class="bi bi-calendar-check"></i>
-                                        Reservasi
-                                    </a>
-                                </div>
+            
+            <div class="card mt-4">
+                <div class="card-header text-white">
+                    Menu Utama
+                </div>
+                <div class="card-body">
+                    @if(Auth::user()->role == 'admin')
+                        <div class="row g-3">
+                            <div class="col-md-6 d-flex">
+                                <a href="{{ url('/admin/kamar') }}" class="menu-btn menu-btn-kamar w-100">
+                                    <i class="bi bi-door-closed"></i>
+                                    Kamar
+                                </a>
                             </div>
-                        @elseif(Auth::user()->role == 'resepsionis')
-                            <div class="d-flex justify-content-center">
-                                <a href="{{ url('/reservasi') }}" class="menu-btn menu-btn-reservasi" style="width:70%;">
+                            <div class="col-md-6 d-flex">
+                                <a href="{{ url('/admin/tamu') }}" class="menu-btn menu-btn-tamu w-100">
+                                    <i class="bi bi-people-fill"></i>
+                                    Tamu
+                                </a>
+                            </div>
+                            <div class="col-md-12 d-flex">
+                                <a href="{{ url('/admin/reservasi') }}" class="menu-btn menu-btn-reservasi w-100">
                                     <i class="bi bi-calendar-check"></i>
                                     Reservasi
                                 </a>
                             </div>
-                        @endif
-                    </div>
-                </div>
-            </div>
-
-            <div class="d-flex justify-content-center">
-                <div class="card mt-4 w-100" style="max-width:760px;">
-                    <div class="card-header text-white text-center">
-                        <span style="font-size:1.05rem;">Ketersediaan Kamar</span>
-                    </div>
-                    <div class="card-body">
-                        @php
-                            // counts dan kamars di-pass dari route
-                            $statusLabels = [
-                                'available' => 'Bisa dipesan',
-                                'reserved' => 'Sudah dibooking',
-                                'occupied' => 'Sudah ditempati',
-                                'dirty' => 'Kotor / Belum dibersihkan',
-                                'maintenance' => 'Rusak / Maintenance',
-                            ];
-                        @endphp
-
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <div>
-                                <strong>Total</strong>
-                                <div class="h5 mb-0">{{ $counts['total'] ?? 0 }}</div>
-                            </div>
-                            <div class="text-end">
-                                <small class="text-success">Bisa dipesan: <strong>{{ $counts['available'] ?? 0 }}</strong></small><br>
-                                <small class="text-warning">Sudah dibooking: <strong>{{ $counts['reserved'] ?? 0 }}</strong></small><br>
-                                <small class="text-danger">Sudah ditempati: <strong>{{ $counts['occupied'] ?? 0 }}</strong></small><br>
-                                <small class="text-muted">Kotor: <strong>{{ $counts['dirty'] ?? 0 }}</strong></small><br>
-                                <small class="text-secondary">Rusak/Maintenance: <strong>{{ $counts['maintenance'] ?? 0 }}</strong></small>
-                            </div>
                         </div>
-
-                        <hr>
-
-                        <h6>Preview Kamar</h6>
-                        @if(isset($kamars) && $kamars->count())
-                            <ul class="list-group">
-                                @foreach($kamars as $k)
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        <div>
-                                            <div style="font-weight:600;">{{ $k->nomor_kamar }} <small class="text-muted">({{ $k->tipe ?? $k->tipe_kamar ?? '-' }})</small></div>
-                                            <small class="text-muted">Rp {{ number_format($k->harga,0,',','.') }}</small>
-                                        </div>
-                                        @php
-                                            $badgeClass = 'bg-secondary';
-                                            if($k->status == 'available') $badgeClass = 'bg-success';
-                                            elseif($k->status == 'reserved') $badgeClass = 'bg-warning text-dark';
-                                            elseif($k->status == 'occupied') $badgeClass = 'bg-danger';
-                                            elseif($k->status == 'dirty') $badgeClass = 'bg-dark text-white';
-                                            elseif($k->status == 'maintenance') $badgeClass = 'bg-secondary';
-                                        @endphp
-                                        <span class="badge {{ $badgeClass }}">
-                                            {{ $statusLabels[$k->status] ?? ucfirst($k->status) }}
-                                        </span>
-                                    </li>
-                                @endforeach
-                            </ul>
-                        @else
-                            <p class="text-muted">Tidak ada data kamar.</p>
-                        @endif
-
-                        <div class="mt-3">
-                            <a href="{{ url('/admin/kamar') }}" class="btn btn-outline-primary w-100">Lihat Semua Kamar</a>
-                        </div>
-                    </div>
+                    @elseif(Auth::user()->role == 'resepsionis')
+                        <a href="{{ url('/reservasi') }}" class="menu-btn menu-btn-reservasi w-100">
+                            <i class="bi bi-calendar-check"></i>
+                            Reservasi
+                        </a>
+                    @endif
                 </div>
             </div>
         </div>
@@ -291,7 +220,7 @@
                         <li><i class="bi bi-wifi" style="margin-right:8px;color:#003580;"></i>Free Wi-Fi</li>
                     </ul>
                 </div>
-
+                
                 <!-- Additional Services -->
                 <div class="col-md-6 mb-3">
                     <strong>Additional Services</strong>
