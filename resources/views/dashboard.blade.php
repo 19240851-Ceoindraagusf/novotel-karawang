@@ -104,7 +104,7 @@
                 </h3>
                 <p>Role: <span class="badge bg-primary">{{ Auth::user()->role }}</span></p>
             </div>
-
+            
             <div class="card mt-4">
                 <div class="card-header text-white">
                     Menu Utama
@@ -220,7 +220,7 @@
                         <li><i class="bi bi-wifi" style="margin-right:8px;color:#003580;"></i>Free Wi-Fi</li>
                     </ul>
                 </div>
-
+                
                 <!-- Additional Services -->
                 <div class="col-md-6 mb-3">
                     <strong>Additional Services</strong>
