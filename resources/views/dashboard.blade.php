@@ -39,10 +39,10 @@
             <span style="font-size:1.4rem;font-weight:bold;letter-spacing:1px;" class="d-flex align-items-center">
                 Novotel Karawang
                 <span class="ms-2 d-flex align-items-center">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="#FFD700" xmlns="http://www.w3.org/2000/svg" style="margin-right:2px;"><polygon points="12,2 15,9 22,9.3 17,14.1 18.5,21 12,17.5 5.5,21 7,14.1 2,9.3 9,9"/></svg>
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="#FFD700" xmlns="http://www.w3.org/2000/svg" style="margin-right:2px;"><polygon points="12,2 15,9 22,9.3 17,14.1 18.5,21 12,17.5 5.5,21 7,14.1 2,9.3 9,9"/></svg>
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="#FFD700" xmlns="http://www.w3.org/2000/svg" style="margin-right:2px;"><polygon points="12,2 15,9 22,9.3 17,14.1 18.5,21 12,17.5 5.5,21 7,14.1 2,9.3 9,9"/></svg>
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="#FFD700" xmlns="http://www.w3.org/2000/svg"><polygon points="12,2 15,9 22,9.3 17,14.1 18.5,21 12,17.5 5.5,21 7,14.1 2,9.3 9,9"/></svg>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="#FFD700"><polygon points="12,2 15,9 22,9.3 17,14.1 18.5,21 12,17.5 5.5,21 7,14.1 2,9.3 9,9"/></svg>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="#FFD700"><polygon points="12,2 15,9 22,9.3 17,14.1 18.5,21 12,17.5 5.5,21 7,14.1 2,9.3 9,9"/></svg>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="#FFD700"><polygon points="12,2 15,9 22,9.3 17,14.1 18.5,21 12,17.5 5.5,21 7,14.1 2,9.3 9,9"/></svg>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="#FFD700"><polygon points="12,2 15,9 22,9.3 17,14.1 18.5,21 12,17.5 5.5,21 7,14.1 2,9.3 9,9"/></svg>
                 </span>
             </span>
         </a>
@@ -59,12 +59,15 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="text-center mb-4">
-                <h3 style="color:#003580;font-weight:bold;">Selamat Datang, {{ Auth::user()->name }}</h3>
+                <h3 style="color:#003580;font-weight:bold;">
+                    Selamat Datang, {{ Auth::user()->name }}
+                </h3>
                 <p>Role: <span class="badge bg-primary">{{ Auth::user()->role }}</span></p>
             </div>
+
             <div class="card mt-4">
                 <div class="card-header text-white">
-                    <span style="font-size:1.1rem;">Menu Utama</span>
+                    Menu Utama
                 </div>
                 <div class="card-body">
                     @if(Auth::user()->role == 'admin')
@@ -78,43 +81,98 @@
             </div>
         </div>
     </div>
+
+    <!-- ABOUT HOTEL -->
+    <div class="card mt-4">
+        <div class="card-header text-white">
+            Tentang Novotel Karawang
+        </div>
+        <div class="card-body" style="max-height:200px;overflow-y:auto;">
+            <p>Novotel Karawang merupakan hotel bintang 4 yang terletak strategis di pusat kota Karawang.</p>
+            <p>Hotel ini menawarkan kenyamanan modern dengan fasilitas lengkap.</p>
+            <p>Dekat kawasan industri, pusat perbelanjaan, dan akses tol.</p>
+            <p>Memberikan pengalaman menginap berstandar internasional.</p>
+        </div>
+    </div>
+
+    <!-- 📍 LOKASI HOTEL (DITAMBAHKAN, TANPA MERUBAH STRUKTUR) -->
+    <div class="card mt-4 mb-5">
+        <div class="card-header text-white">
+            Lokasi Hotel
+        </div>
+        <div class="card-body">
+            <iframe
+                src="https://www.google.com/maps?q=Novotel%20Karawang&output=embed"
+                width="100%"
+                height="300"
+                style="border:0;border-radius:12px;"
+                loading="lazy">
+            </iframe>
+
+            <div class="mt-3">
+                <strong>Alamat:</strong><br>
+                Jl. Interchange Karawang Barat, Margakaya,<br>
+                Teluk Jambe Barat, Karawang, Jawa Barat 41361
+            </div>
+
+            <!-- 🏨 HOTEL SERVICES -->
+<div class="card mt-4 mb-5">
+    <div class="card-header text-white">
+        Hotel Services & Information
+    </div>
+    <div class="card-body">
+
+        <div class="row">
+            <!-- Check-in / Check-out -->
+            <div class="col-md-6 mb-3">
+                <strong>Check-in / Check-out</strong>
+                <ul class="mt-2">
+                    <li>Check-in from <strong>02:00 PM</strong></li>
+                    <li>Check-out up to <strong>12:00 PM</strong></li>
+                </ul>
+            </div>
+
+            <!-- On Site Services -->
+            <div class="col-md-6 mb-3">
+                <strong>On-site Facilities</strong>
+                <ul class="mt-2">
+                    <li>Swimming Pool</li>
+                    <li>Restaurant</li>
+                    <li>Bar</li>
+                    <li>Fitness Center</li>
+                    <li>Meeting Rooms</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row mt-2">
+            <!-- Accessibility -->
+            <div class="col-md-6 mb-3">
+                <strong>Accessibility & Comfort</strong>
+                <ul class="mt-2">
+                    <li>Wheelchair Accessible</li>
+                    <li>Air Conditioning</li>
+                    <li>Free Wi-Fi</li>
+                </ul>
+            </div>
+
+            <!-- Additional Services -->
+            <div class="col-md-6 mb-3">
+                <strong>Additional Services</strong>
+                <ul class="mt-2">
+                    <li>Car Park</li>
+                    <li>Breakfast Available</li>
+                    <li>Room Service</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
 </div>
-<!-- ABOUT HOTEL -->
-<div class="card mt-4 shadow">
-    <div class="card-header bg-primary text-white">
-        <strong>Tentang Novotel Karawang</strong>
+
+        </div>
     </div>
-    <style>
-.about-scroll {
-    max-height: 200px;
-    overflow-y: auto;
-}
-</style>
 
-    <div class="card-body about-scroll">
-        <p>
-            Novotel Karawang merupakan hotel bintang 4 yang terletak strategis
-            di pusat kota Karawang. Hotel ini menawarkan kenyamanan modern
-            dengan fasilitas lengkap untuk kebutuhan bisnis maupun liburan.
-        </p>
-
-        <p>
-            Dengan desain elegan dan pelayanan profesional, Novotel Karawang
-            memiliki berbagai tipe kamar yang nyaman, restoran, ruang meeting,
-            kolam renang, serta fasilitas kebugaran.
-        </p>
-
-        <p>
-            Lokasi hotel sangat dekat dengan kawasan industri, pusat perbelanjaan,
-            dan akses tol, sehingga menjadi pilihan ideal bagi tamu lokal maupun
-            internasional.
-        </p>
-
-        <p>
-            Visi kami adalah memberikan pengalaman menginap terbaik dengan
-            standar internasional dan keramahan khas Indonesia.
-        </p>
-    </div>
 </div>
 
 </body>

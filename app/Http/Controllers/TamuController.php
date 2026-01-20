@@ -7,11 +7,13 @@ use Illuminate\Http\Request;
 
 class TamuController extends Controller
 {
-   public function index()
+ public function index()
 {
-    $tamus = \App\Models\Tamu::all();
+   $tamus = Tamu::with('reservasis')->get();
+
     return view('tamu.index', compact('tamus'));
 }
+
     public function create()
     {
         return view('tamu.create');

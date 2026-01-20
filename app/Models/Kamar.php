@@ -8,6 +8,7 @@ class Kamar extends Model
 {
     protected $table = 'kamars';
     
+    
     protected $fillable = [
         'nomor_kamar',
         'tipe_kamar',

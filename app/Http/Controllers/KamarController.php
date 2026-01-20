@@ -35,7 +35,7 @@ class KamarController extends Controller
         'nomor_kamar' => 'required|string|max:10',
         'tipe_kamar' => 'required|string|max:50',
         'harga' => 'required|numeric',
-        'status' => 'required|in:tersedia,terisi'
+      'status' => 'required|in:available,reserved,occupied,dirty,maintenance'
     ]);
 
     Kamar::create($validated);
@@ -69,7 +69,7 @@ class KamarController extends Controller
             'nomor_kamar' => 'required|string|max:10',
             'tipe_kamar' => 'required|string|max:50',
             'harga' => 'required|numeric',
-            'status' => 'required|in:tersedia,terisi,maintenance'
+            'status' => 'required|in:available,reserved,occupied,dirty,maintenance'
         ]);
 
         $kamar->update($validated);

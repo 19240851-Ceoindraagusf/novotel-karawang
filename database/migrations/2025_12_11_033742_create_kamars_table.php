@@ -13,9 +13,9 @@ return new class extends Migration
     {
       Schema::create('kamars', function (Blueprint $table) {
     $table->id();
-    $table->string('nomor_kamar')->unique();
-    $table->string('tipe');
-    $table->integer('harga');
+    $table->string('nomor_kamar', 10)->unique();
+    $table->string('tipe_kamar', 50)->nullable();
+    $table->decimal('harga', 10, 2)->default(0);
     $table->enum('status', ['tersedia', 'terisi', 'maintenance'])->default('tersedia');
     $table->timestamps();
 });

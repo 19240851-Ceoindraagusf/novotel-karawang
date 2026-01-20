@@ -132,8 +132,8 @@
         @endif
 
         <a href="{{ route('reservasi.create') }}" class="btn">+ Tambah Reservasi</a>
-        <a href="{{ route('dashboard') }}" class="btn btn-dashboard">← Kembali ke Dashboard</a>
-
+        <a href="{{ route('dashboard') }}" class="btn btn-dashboard">Kembali ke Dashboard</a>
+        
         <table>
             <thead>
                 <tr>
@@ -155,11 +155,38 @@
                         <td>{{ $r->kamar->nomor_kamar ?? '–' }}</td>
                         <td>{{ \Carbon\Carbon::parse($r->check_in)->format('d M Y') }}</td>
                         <td>{{ \Carbon\Carbon::parse($r->check_out)->format('d M Y') }}</td>
-                        <td>{{ $r->metode_pembayaran ? ucfirst($r->metode_pembayaran) : '-' }}</td>
+                        <td>@if($r->metode_pembayaran)
+    {{ strtoupper($r->metode_pembayaran) }}
+@else
+    <em>Belum dipilih</em>
+@endif
+</td>
+
+@if($r->check_in_at && $r->check_out_at === null)
+<form action="{{ route('reservasi.checkout', $r->id) }}" method="POST" style="display:inline">
+    @csrf
+    <button class="btn btn-danger btn-sm"
+        onclick="return confirm('Check-out tamu sekarang?')">
+        Check-out
+    </button>
+</form>
+@endif
+
+
+
                         <td>{{ $r->status_pembayaran ? ucfirst($r->status_pembayaran) : '-' }}</td>
                         <td>
                             <div class="actions">
                                 <a href="{{ route('reservasi.edit', $r->id) }}" class="btn-sm btn-warning">Edit</a>
+                                
+        <a href="{{ route('invoice.pdf', $r->id) }}"
+   target="_blank"
+   class="btn-sm"
+   style="background:#28a745;color:white;">
+   Cetak Invoice (PDF)
+</a>
+
+        
                                 <form action="{{ route('reservasi.destroy', $r->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Yakin ingin menghapus reservasi ini?')">
                                     @csrf
                                     @method('DELETE')
