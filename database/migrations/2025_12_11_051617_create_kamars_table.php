@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nomor_kamar', 10);
             $table->string('tipe_kamar', 50)->nullable();
             $table->decimal('harga', 10, 2)->default(0);
-            $table->enum('status', ['tersedia', 'terisi', 'maintenance'])->default('tersedia');
+            $table->enum('status', ['available', 'reserved', 'occupied', 'dirty', 'maintenance'])->default('available');
             $table->timestamps();
         });
     }

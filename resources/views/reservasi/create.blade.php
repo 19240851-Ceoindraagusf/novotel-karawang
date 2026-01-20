@@ -98,10 +98,20 @@
                 <select id="kamar_id" name="kamar_id" required>
                     <option value="">-- Pilih Kamar --</option>
                     @foreach($kamars as $kamar)
-                        <option value="{{ $kamar->id }}" {{ $kamar->status == 'terisi' ? 'disabled' : '' }}>
+                        @php
+                            $disabled = $kamar->status !== 'available' ? 'disabled' : '';
+                            $labels = [
+                                'available' => 'Bisa dipesan',
+                                'reserved' => 'Sudah dibooking',
+                                'occupied' => 'Sudah ditempati',
+                                'dirty' => 'Kotor / Belum dibersihkan',
+                                'maintenance' => 'Rusak / Maintenance',
+                            ];
+                        @endphp
+                        <option value="{{ $kamar->id }}" {{ $disabled }}>
                             {{ $kamar->nomor_kamar }} ({{ $kamar->tipe_kamar }}, Rp {{ number_format($kamar->harga, 0, ',', '.') }})
-                            @if($kamar->status == 'terisi')
-                                – Terisi
+                            @if($kamar->status !== 'available')
+                                – {{ $labels[$kamar->status] ?? $kamar->status }}
                             @endif
                         </option>
                     @endforeach

@@ -90,17 +90,25 @@
             font-size: 12px;
             font-weight: bold;
         }
-        .status.tersedia {
+        .status.available {
             background: #d4edda;
             color: #155724;
         }
-        .status.terisi {
+        .status.reserved {
+            background: #fff3cd;
+            color: #856404;
+        }
+        .status.occupied {
             background: #f8d7da;
             color: #721c24;
         }
+        .status.dirty {
+            background: #e2e3e5;
+            color: #495057;
+        }
         .status.maintenance {
-            background: #fff3cd;
-            color: #856404;
+            background: #ffe5e0;
+            color: #833a2b;
         }
         .actions {
             display: flex;
@@ -186,8 +194,17 @@
 
                         
                         <td>
+                            @php
+                                $statusLabels = [
+                                    'available' => 'Bisa dipesan',
+                                    'reserved' => 'Sudah dibooking',
+                                    'occupied' => 'Sudah ditempati',
+                                    'dirty' => 'Kotor / Belum dibersihkan',
+                                    'maintenance' => 'Rusak / Maintenance',
+                                ];
+                            @endphp
                             <span class="status {{ $kamar->status }}">
-                                {{ ucfirst($kamar->status) }}
+                                {{ $statusLabels[$kamar->status] ?? ucfirst($kamar->status) }}
                             </span>
                         </td>
 
