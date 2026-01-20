@@ -5,6 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daftar Tamu - Novotel Karawang</title>
     <style>
+        @keyframes slideInTable {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes headerGlow {
+            0%, 100% {
+                box-shadow: inset 0 0 0 rgba(0, 53, 128, 0.1);
+            }
+            50% {
+                box-shadow: inset 0 0 10px rgba(0, 53, 128, 0.2);
+            }
+        }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: Arial, sans-serif;
@@ -84,9 +104,29 @@
             background: #003580;
             color: white;
             letter-spacing: 1px;
+            animation: headerGlow 2s ease-in-out infinite;
         }
-        tr:hover {
-            background: #f5f5f5;
+        tbody tr {
+            animation: slideInTable 0.5s ease-out both;
+        }
+        tbody tr:nth-child(1) { animation-delay: 0.1s; }
+        tbody tr:nth-child(2) { animation-delay: 0.15s; }
+        tbody tr:nth-child(3) { animation-delay: 0.2s; }
+        tbody tr:nth-child(4) { animation-delay: 0.25s; }
+        tbody tr:nth-child(5) { animation-delay: 0.3s; }
+        tbody tr:nth-child(6) { animation-delay: 0.35s; }
+        tbody tr:nth-child(7) { animation-delay: 0.4s; }
+        tbody tr:nth-child(8) { animation-delay: 0.45s; }
+        tbody tr:nth-child(9) { animation-delay: 0.5s; }
+        tbody tr:nth-child(10) { animation-delay: 0.55s; }
+        tbody tr:nth-child(n+11) { animation-delay: 0.6s; }
+        tbody tr {
+            transition: all 0.3s ease;
+        }
+        tbody tr:hover {
+            background: linear-gradient(90deg, #f0f4ff 0%, #f5f5f5 100%);
+            transform: scale(1.01);
+            box-shadow: 0 2px 8px rgba(0, 53, 128, 0.1);
         }
         .actions {
             display: flex;

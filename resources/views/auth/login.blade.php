@@ -1,4 +1,44 @@
 <style>
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes pulseLogo {
+        0%, 100% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.05);
+        }
+    }
+
+    @keyframes slideInLeft {
+        from {
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes glow {
+        0%, 100% {
+            box-shadow: 0 4px 16px rgba(0,53,128,0.07);
+        }
+        50% {
+            box-shadow: 0 4px 24px rgba(0,53,128,0.15);
+        }
+    }
+
     body.login-novotel-bg {
         min-height: 100vh;
         background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=1200&h=800&fit=crop') center/cover no-repeat;
@@ -18,6 +58,7 @@
         display: flex;
         flex-direction: column;
         align-items: stretch;
+        animation: fadeInUp 0.6s ease-out, glow 2s ease-in-out infinite;
     }
     .novotel-login-header {
         display: flex;
@@ -25,9 +66,11 @@
         justify-content: center;
         gap: 16px;
         margin-bottom: 18px;
+        animation: slideInLeft 0.7s ease-out 0.1s both;
     }
     .novotel-login-header .novotel-logo {
         height: 48px;
+        animation: pulseLogo 2s ease-in-out infinite;
     }
     .novotel-login-header .hotel-title {
         font-size: 1.3rem;
@@ -47,6 +90,19 @@
     }
     .novotel-login-card form > div {
         margin-bottom: 18px;
+        animation: slideInLeft 0.7s ease-out both;
+    }
+    .novotel-login-card form > div:nth-child(1) {
+        animation-delay: 0.2s;
+    }
+    .novotel-login-card form > div:nth-child(2) {
+        animation-delay: 0.3s;
+    }
+    .novotel-login-card form > div:nth-child(3) {
+        animation-delay: 0.4s;
+    }
+    .novotel-login-card form > div:nth-child(4) {
+        animation-delay: 0.5s;
     }
     .novotel-login-card label {
         color: #003580;
@@ -61,12 +117,13 @@
         font-size: 15px;
         width: 100%;
         margin-top: 2px;
-        transition: border 0.2s;
+        transition: border 0.2s, box-shadow 0.3s ease;
     }
     .novotel-login-card input[type="email"]:focus,
     .novotel-login-card input[type="password"]:focus {
         border-color: #003580;
         outline: none;
+        box-shadow: 0 0 0 3px rgba(0, 53, 128, 0.1);
     }
     .novotel-login-card .remember-me {
         display: flex;
@@ -84,10 +141,15 @@
         font-weight: 600;
         width: 100%;
         margin-top: 8px;
-        transition: background 0.2s;
+        transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
     }
     .novotel-login-card .login-btn:hover {
         background: #00214d;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 53, 128, 0.3);
+    }
+    .novotel-login-card .login-btn:active {
+        transform: translateY(0);
     }
     .novotel-login-card .forgot-link {
         color: #003580;
