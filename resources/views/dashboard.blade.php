@@ -61,7 +61,7 @@
             color: white;
         }
         .menu-btn-reservasi {
-            background: linear-gradient(135deg, #7ab7e6 0%, #0d5f6b 100%);
+            background: linear-gradient(135deg, #7ab7e6 0%, #226974 100%);
         }
         .menu-btn-reservasi:hover {
             background: linear-gradient(135deg, #0d5f6b 0%, #074554 100%);
@@ -143,15 +143,18 @@
     </div>
 
     <!-- ABOUT HOTEL -->
-    <div class="card mt-4">
-        <div class="card-header text-white">
-            Tentang Novotel Karawang
-        </div>
-        <div class="card-body" style="max-height:200px;overflow-y:auto;">
-            <p>Novotel Karawang merupakan hotel bintang 4 yang terletak strategis di pusat kota Karawang.</p>
-            <p>Hotel ini menawarkan kenyamanan modern dengan fasilitas lengkap.</p>
-            <p>Dekat kawasan industri, pusat perbelanjaan, dan akses tol.</p>
-            <p>Memberikan pengalaman menginap berstandar internasional.</p>
+    <div class="mt-5 mb-5">
+        <h2 style="color:#003580;font-weight:bold;margin-bottom:30px;text-align:center;">Tentang Novotel Karawang</h2>
+        <div style="max-width:900px;margin:0 auto;line-height:1.8;text-align:center;">
+            <p style="font-size:1.05rem;color:#333;">Novotel Karawang merupakan hotel bintang 4 yang terletak strategis di pusat kota Karawang, Jawa Barat. Dengan lokasi yang sempurna, hotel kami menawarkan akses mudah ke berbagai destinasi bisnis dan wisata di sekitar kota Karawang.</p>
+            
+            <p style="font-size:1.05rem;color:#333;">Hotel ini menawarkan kenyamanan modern dengan fasilitas lengkap yang dirancang untuk memenuhi kebutuhan para tamu bisnis maupun wisatawan. Setiap kamar dilengkapi dengan peralatan modern, kenyamanan maksimal, dan pelayanan yang ramah dari tim profesional kami.</p>
+            
+            <p style="font-size:1.05rem;color:#333;">Berlokasi dekat dengan kawasan industri, pusat perbelanjaan, dan akses tol utama, memudahkan Anda untuk menjangkau berbagai lokasi penting. Kami memahami kebutuhan perjalanan bisnis dan liburan Anda dengan sempurna.</p>
+            
+            <p style="font-size:1.05rem;color:#333;">Novotel Karawang berkomitmen memberikan pengalaman menginap berstandar internasional dengan harga yang kompetitif. Dengan tim staf yang terlatih dan berpengalaman, kami siap memberikan pelayanan terbaik untuk membuat kunjungan Anda tak terlupakan.</p>
+            
+            <p style="font-size:1.05rem;color:#333;">Fasilitas lengkap termasuk kolam renang, restoran, bar, pusat kebugaran, dan ruang meeting yang dapat disesuaikan dengan kebutuhan acara Anda. Setiap detail dirancang untuk memberikan kenyamanan maksimal selama menginap.</p>
         </div>
     </div>
 
