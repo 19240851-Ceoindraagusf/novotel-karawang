@@ -29,18 +29,26 @@ class KamarController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-  public function store(Request $request): RedirectResponse
+public function store(Request $request)
 {
-    $validated = $request->validate([
-        'nomor_kamar' => 'required|string|max:10',
-        'tipe_kamar' => 'required|string|max:50',
-        'harga' => 'required|numeric',
-        'status' => 'required|in:tersedia,terisi'
+    $data = $request->validate([
+        'nomor_kamar' => 'required',
+        'tipe_kamar'  => 'required',
+        'harga'       => 'required|numeric',
+        'status'      => 'required',
+        'foto'        => 'nullable|image|mimes:jpg,jpeg,png',
     ]);
 
-    Kamar::create($validated);
+    if ($request->hasFile('foto')) {
+        $file = $request->file('foto');
+        $nama = time() . '.' . $file->extension();
+        $file->storeAs('public/kamar', $nama);
+        $data['foto'] = $nama;
+    }
 
-    return redirect()->route('kamar.index')->with('success', 'Kamar berhasil ditambahkan!');
+    Kamar::create($data);
+
+    return redirect()->route('kamar.index')->with('success', 'Kamar berhasil ditambahkan');
 }
 
 
@@ -65,16 +73,23 @@ class KamarController extends Controller
      */
     public function update(Request $request, Kamar $kamar): RedirectResponse
     {
-        $validated = $request->validate([
-            'nomor_kamar' => 'required|string|max:10',
-            'tipe_kamar' => 'required|string|max:50',
-            'harga' => 'required|numeric',
-            'status' => 'required|in:tersedia,terisi,maintenance'
-        ]);
+    $data = $request->all();
+if ($request->hasFile('foto')) {
+    $file = $request->file('foto');
 
-        $kamar->update($validated);
+    // 🔴 PAKSA NAMA FILE BARU (AMAN)
+    $nama = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
 
-        return redirect()->route('kamar.index')->with('success', 'Kamar berhasil diupdate!');
+    $file->storeAs('public/kamar', $nama);
+
+    $data['foto'] = $nama;
+}
+
+
+    $kamar->update($data);
+
+    return redirect()->route('kamar.index')
+        ->with('success', 'Data kamar berhasil diperbarui');
     }
 
     /**

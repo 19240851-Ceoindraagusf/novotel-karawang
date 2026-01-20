@@ -8,12 +8,15 @@ class Kamar extends Model
 {
     protected $table = 'kamars';
     
-    protected $fillable = [
+    
+     protected $fillable = [
         'nomor_kamar',
         'tipe_kamar',
         'harga',
-        'status'
+        'status',
+        'foto',
     ];
+
 
     protected $casts = [
         'harga' => 'decimal:2'

@@ -142,19 +142,40 @@
                        required>
             </div>
 
-            <div class="form-group">
-                <label for="status">Status</label>
-                <select id="status" name="status" required>
-                    <option value="">Pilih Status</option>
-                    <option value="tersedia" {{ old('status', $kamar->status) == 'tersedia' ? 'selected' : '' }}>Tersedia</option>
-                    <option value="terisi" {{ old('status', $kamar->status) == 'terisi' ? 'selected' : '' }}>Terisi</option>
-                    <option value="maintenance" {{ old('status', $kamar->status) == 'maintenance' ? 'selected' : '' }}>Maintenance</option>
-                </select>
-            </div>
+            <div class="mb-3">
+    <label class="form-label">Status Kamar</label>
+    <select name="status" class="form-control" required>
+        <option value="available" {{ $kamar->status == 'available' ? 'selected' : '' }}>
+            Bisa dipesan
+        </option>
+        <option value="reserved" {{ $kamar->status == 'reserved' ? 'selected' : '' }}>
+            Sudah dibooking
+        </option>
+        <option value="occupied" {{ $kamar->status == 'occupied' ? 'selected' : '' }}>
+            Sedang ditempati
+        </option>
+        <option value="dirty" {{ $kamar->status == 'dirty' ? 'selected' : '' }}>
+            Kotor / Belum dibersihkan
+        </option>
+        <option value="maintenance" {{ $kamar->status == 'maintenance' ? 'selected' : '' }}>
+            Rusak / Maintenance
+        </option>
+    </select>
+</div>
 
             <div class="actions">
                 <button type="submit" class="btn">Perbarui</button>
                 <a href="{{ route('kamar.index') }}" class="btn-cancel">Batal</a>
+            
+            
+   @if($kamar->foto)
+    <img src="{{ asset('storage/kamar/'.$kamar->foto) }}" width="120">
+@else
+    <span>Tidak ada foto</span>
+@endif
+
+<input type="file" name="foto">
+
             </div>
         </form>
     </div>

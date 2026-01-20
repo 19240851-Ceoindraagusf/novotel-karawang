@@ -15,4 +15,9 @@ class Tamu extends Model
         'telepon',
         'email',
     ];
+
+    public function reservasis()
+    {
+        return $this->hasMany(Reservasi::class);
+    }
 }

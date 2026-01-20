@@ -160,7 +160,7 @@
         @endif
 
         <a href="{{ route('kamar.create') }}" class="btn">+ Tambah Kamar Baru</a>
-        <a href="{{ route('dashboard') }}" class="btn" style="background:#6c757d;">← Kembali ke Dashboard</a>
+        <a href="{{ route('dashboard') }}" class="btn" style="background:#6c757d;">Kembali ke Dashboard</a>
 
         <table>
             <thead>
@@ -170,7 +170,10 @@
                     <th>Tipe Kamar</th>
                     <th>Harga</th>
                     <th>Status</th>
+                         <!-- TAMBAHAN FOTO -->
+                    <th>Foto</th>
                     <th>Aksi</th>
+                    
                 </tr>
             </thead>
             <tbody>
@@ -178,13 +181,26 @@
                     <tr>
                         <td>{{ $kamars->firstItem() + $index }}</td>
                         <td>{{ $kamar->nomor_kamar }}</td>
-                        <td>{{ $kamar->tipe_kamar }}</td>
+                       <td>{{ $kamar->tipe_kamar ?? '-' }}</td>
                         <td>Rp {{ number_format($kamar->harga, 0, ',', '.') }}</td>
+
+                        
                         <td>
                             <span class="status {{ $kamar->status }}">
                                 {{ ucfirst($kamar->status) }}
                             </span>
                         </td>
+
+                          <!-- TAMBAHAN FOTO -->
+       <td>
+    @if($kamar->foto)
+        <img src="{{ asset('storage/kamar/'.$kamar->foto) }}" width="100" class="img-thumbnail">
+    @else
+        -
+    @endif
+</td>
+
+
                         <td>
                             <div class="actions">
                                 <a href="{{ route('kamar.edit', $kamar->id) }}" class="btn-sm btn-warning">Edit</a>
