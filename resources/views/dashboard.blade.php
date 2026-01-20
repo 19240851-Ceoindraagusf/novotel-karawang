@@ -56,7 +56,7 @@
 </nav>
 
 <div class="container mt-4">
-    <div class="row justify-content-center">
+    <div class="row">
         <div class="col-md-8">
             <div class="text-center mb-4">
                 <h3 style="color:#003580;font-weight:bold;">Selamat Datang, {{ Auth::user()->name }}</h3>
@@ -74,6 +74,60 @@
                     @elseif(Auth::user()->role == 'resepsionis')
                         <a href="{{ url('/reservasi') }}" class="btn btn-info w-100 mb-2">Reservasi</a>
                     @endif
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card mt-4">
+                <div class="card-header text-white">
+                    <span style="font-size:1.05rem;">Ketersediaan Kamar</span>
+                </div>
+                <div class="card-body">
+                    @php
+                        // counts dan kamars di-pass dari route
+                    @endphp
+
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <div>
+                            <strong>Total</strong>
+                            <div class="h5 mb-0">{{ $counts['total'] ?? 0 }}</div>
+                        </div>
+                        <div class="text-end">
+                            <small class="text-success">Tersedia: <strong>{{ $counts['tersedia'] ?? 0 }}</strong></small><br>
+                            <small class="text-danger">Terisi: <strong>{{ $counts['terisi'] ?? 0 }}</strong></small><br>
+                            <small class="text-muted">Maintenance: <strong>{{ $counts['maintenance'] ?? 0 }}</strong></small>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <h6>Preview Kamar</h6>
+                    @if(isset($kamars) && $kamars->count())
+                        <ul class="list-group">
+                            @foreach($kamars as $k)
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <div style="font-weight:600;">{{ $k->nomor_kamar }} <small class="text-muted">({{ $k->tipe ?? $k->tipe_kamar ?? '-' }})</small></div>
+                                        <small class="text-muted">Rp {{ number_format($k->harga,0,',','.') }}</small>
+                                    </div>
+                                    <span class="badge 
+                                        @if($k->status == 'tersedia') bg-success
+                                        @elseif($k->status == 'terisi') bg-danger
+                                        @else bg-secondary
+                                        @endif">
+                                        {{ ucfirst($k->status) }}
+                                    </span>
+                                </li>
+                            @endforeach
+                        </ul>
+                    @else
+                        <p class="text-muted">Tidak ada data kamar.</p>
+                    @endif
+
+                    <div class="mt-3">
+                        <a href="{{ url('/admin/kamar') }}" class="btn btn-outline-primary w-100">Lihat Semua Kamar</a>
+                    </div>
                 </div>
             </div>
         </div>
