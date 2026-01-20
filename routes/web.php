@@ -45,8 +45,10 @@ Route::get('/dashboard', function () {
     // ambil ringkasan kamar untuk ditampilkan di dashboard
     $counts = [
         'total' => Kamar::count(),
-        'tersedia' => Kamar::where('status', 'tersedia')->count(),
-        'terisi' => Kamar::where('status', 'terisi')->count(),
+        'available' => Kamar::where('status', 'available')->count(),
+        'reserved' => Kamar::where('status', 'reserved')->count(),
+        'occupied' => Kamar::where('status', 'occupied')->count(),
+        'dirty' => Kamar::where('status', 'dirty')->count(),
         'maintenance' => Kamar::where('status', 'maintenance')->count(),
     ];
 
