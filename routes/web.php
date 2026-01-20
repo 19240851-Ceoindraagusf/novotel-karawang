@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\KamarController;
+use App\Models\Kamar;
 use App\Http\Controllers\TamuController;
 use App\Http\Controllers\ReservasiController;
 use App\Http\Controllers\PembayaranController;
@@ -41,7 +42,18 @@ Route::get('/', function () {
 
 // Dashboard
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    // ambil ringkasan kamar untuk ditampilkan di dashboard
+    $counts = [
+        'total' => Kamar::count(),
+        'tersedia' => Kamar::where('status', 'tersedia')->count(),
+        'terisi' => Kamar::where('status', 'terisi')->count(),
+        'maintenance' => Kamar::where('status', 'maintenance')->count(),
+    ];
+
+    // ambil beberapa kamar terbaru/terurut untuk preview (maks 8)
+    $kamars = Kamar::orderBy('nomor_kamar')->take(8)->get();
+
+    return view('dashboard', compact('counts', 'kamars'));
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 // Profile
