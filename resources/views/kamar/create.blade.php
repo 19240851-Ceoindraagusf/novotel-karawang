@@ -159,10 +159,19 @@
 </div>
 
 
+        <form action="{{ route('kamar.store') }}"
+      method="POST"
+      enctype="multipart/form-data">
+    @csrf
+
+    <label>Foto Kamar</label>
+    <input type="file" name="foto" accept="image/*">
+
             <div>
                 <button type="submit" class="btn btn-primary">Simpan</button>
                 <a href="{{ route('kamar.index') }}" class="btn btn-secondary">Batal</a>
             </div>
+</form>
         </form>
     </div>
 </body>
