@@ -162,12 +162,25 @@
 <body class="login-novotel-bg">
     <div class="novotel-login-card">
         <div class="novotel-login-header">
-            <svg viewBox="0 0 200 240" class="novotel-logo" xmlns="http://www.w3.org/2000/svg">
-                <text x="100" y="45" font-size="48" font-weight="bold" text-anchor="middle" fill="#003580" font-family="Arial, sans-serif">NO</text>
-                <text x="100" y="95" font-size="48" font-weight="bold" text-anchor="middle" fill="#003580" font-family="Arial, sans-serif">VO</text>
-                <text x="100" y="145" font-size="48" font-weight="bold" text-anchor="middle" fill="#003580" font-family="Arial, sans-serif">TEL</text>
-                <text x="100" y="200" font-size="32" font-weight="bold" text-anchor="middle" fill="#003580" font-family="Arial, sans-serif">KARAWANG</text>
-            </svg>
+            @php
+                use Illuminate\Support\Facades\Storage;
+                $candidates = ['public/kamar/novotel-logo.png', 'public/kamar/novotel-logo.jpg', 'public/kamar/novotel-logo.jpeg'];
+                $found = null;
+                foreach ($candidates as $p) {
+                    if (Storage::exists($p)) { $found = $p; break; }
+                }
+                $logoPath = $found ? asset(str_replace('public/', 'storage/', $found)) : null;
+            @endphp
+            @if($logoPath)
+                <img src="{{ $logoPath }}" class="novotel-logo" alt="Novotel Karawang Logo">
+            @else
+                <svg viewBox="0 0 200 240" class="novotel-logo" xmlns="http://www.w3.org/2000/svg">
+                    <text x="100" y="45" font-size="48" font-weight="bold" text-anchor="middle" fill="#003580" font-family="Arial, sans-serif">NO</text>
+                    <text x="100" y="95" font-size="48" font-weight="bold" text-anchor="middle" fill="#003580" font-family="Arial, sans-serif">VO</text>
+                    <text x="100" y="145" font-size="48" font-weight="bold" text-anchor="middle" fill="#003580" font-family="Arial, sans-serif">TEL</text>
+                    <text x="100" y="200" font-size="32" font-weight="bold" text-anchor="middle" fill="#003580" font-family="Arial, sans-serif">KARAWANG</text>
+                </svg>
+            @endif
             <span class="hotel-title">Novotel Karawang</span>
             <span class="stars">
                 <svg viewBox="0 0 24 24" fill="#FFD700"><polygon points="12,2 15,9 22,9.3 17,14.1 18.5,21 12,17.5 5.5,21 7,14.1 2,9.3 9,9"/></svg>

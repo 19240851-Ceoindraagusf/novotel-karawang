@@ -75,7 +75,16 @@
 <nav class="navbar navbar-expand-lg navbar-dark" style="background:#003580;">
     <div class="container align-items-center">
         <a class="navbar-brand d-flex align-items-center" href="#">
-            <img src="/build/assets/novotel-logo.svg" alt="Novotel Karawang Logo" class="novotel-logo">
+            @php
+                use Illuminate\Support\Facades\Storage;
+                $candidates = ['public/kamar/novotel-logo.png', 'public/kamar/novotel-logo.jpg', 'public/kamar/novotel-logo.jpeg'];
+                $found = null;
+                foreach ($candidates as $p) {
+                    if (Storage::exists($p)) { $found = $p; break; }
+                }
+                $logoPath = $found ? asset(str_replace('public/', 'storage/', $found)) : asset('build/assets/novotel-logo.svg');
+            @endphp
+            <img src="{{ $logoPath }}" alt="Novotel Karawang Logo" class="novotel-logo">
             <span style="font-size:1.4rem;font-weight:bold;letter-spacing:1px;" class="d-flex align-items-center">
                 Novotel Karawang
                 <span class="ms-2 d-flex align-items-center">

@@ -99,7 +99,16 @@
 <body>
     <div class="container">
         <div class="header-novotel">
-            <img src="/build/assets/novotel-logo.svg" alt="Novotel Karawang Logo" class="novotel-logo">
+            @php
+                use Illuminate\Support\Facades\Storage;
+                $candidates = ['public/kamar/novotel-logo.png', 'public/kamar/novotel-logo.jpg', 'public/kamar/novotel-logo.jpeg'];
+                $found = null;
+                foreach ($candidates as $p) {
+                    if (Storage::exists($p)) { $found = $p; break; }
+                }
+                $logoPath = $found ? asset(str_replace('public/', 'storage/', $found)) : asset('build/assets/novotel-logo.svg');
+            @endphp
+            <img src="{{ $logoPath }}" alt="Novotel Karawang Logo" class="novotel-logo">
             <h1>Edit Data Tamu</h1>
             <span class="stars">
                 <svg viewBox="0 0 24 24" fill="#FFD700" xmlns="http://www.w3.org/2000/svg"><polygon points="12,2 15,9 22,9.3 17,14.1 18.5,21 12,17.5 5.5,21 7,14.1 2,9.3 9,9"/></svg>
