@@ -29,8 +29,8 @@
                 <div class="title">Kamar {{ $kamar->nomor_kamar }} — {{ $kamar->tipe_kamar ?? '-' }}</div>
                 <div class="sub">Rp {{ number_format($kamar->harga,0,',','.') }} · {{ $kamar->status ?? '-' }}</div>
             </div>
-            <div>
-                <a href="{{ route('kamar.index') }}" class="btn back">Kembali ke Daftar</a>
+                <div>
+                <a href="{{ route('kamar.index') }}?page={{ request()->get('page', 1) }}" class="btn back">Kembali ke Daftar</a>
             </div>
         </div>
 
@@ -52,15 +52,11 @@
 
                     <h4 style="margin-top:12px;color:#003580">Fitur utama</h4>
                     <ul>
-                        <li>Pemandangan: {{ $kamar->area ? 'Sisi kota / '.$kamar->area : 'Sisi kota' }}</li>
-                        <li>Maks. jumlah orang: {{ $kamar->maks_orang ?? '3' }}</li>
-                        <li>Area: {{ $kamar->area ?? 'Dari 26 m²' }}</li>
                         @if($kamar->fasilitas)
-                            @foreach(explode(',', $kamar->fasilitas) as $f)
-                                <li>{{ trim($f) }}</li>
+                            @foreach(array_filter(array_map('trim', explode(',', $kamar->fasilitas))) as $f)
+                                <li>{{ $f }}</li>
                             @endforeach
                         @else
-                            <li>Tempat tidur: Tempat tidur ganda x1</li>
                             <li>Makanan & Minuman: Fasilitas Makan dan Minum</li>
                             <li>Fasilitas pembuat kopi/teh</li>
                             <li>Mini Bar</li>
@@ -76,13 +72,13 @@
                     <dt>Tipe</dt><dd>{{ $kamar->tipe_kamar ?? '-' }}</dd>
                     <dt>Harga</dt><dd>Rp {{ number_format($kamar->harga,0,',','.') }}</dd>
                     <dt>Status</dt><dd>{{ $kamar->status ?? '-' }}</dd>
-                    <dt>Area</dt><dd>Dari 26 m²</dd>
-                    <dt>Maks. Orang</dt><dd>3</dd>
-                    <dt>Tempat Tidur</dt><dd>Tempat tidur ganda x1</dd>
+                    <dt>Area</dt><dd>{{ $kamar->area ?? 'Dari 26 m²' }}</dd>
+                    <dt>Maks. Orang</dt><dd>{{ $kamar->maks_orang ?? '3' }}</dd>
+                    <dt>Tempat Tidur</dt><dd>{{ $kamar->tempat_tidur ?? 'Tempat tidur ganda x1' }}</dd>
                 </dl>
 
                 <div style="margin-top:12px">
-                    <a href="{{ route('kamar.edit', $kamar->id) }}" class="btn">Edit Kamar</a>
+                    <a href="{{ route('kamar.edit', $kamar->id) }}?page={{ request()->get('page', 1) }}" class="btn">Edit Kamar</a>
                 </div>
             </aside>
         </div>

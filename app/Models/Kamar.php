@@ -19,6 +19,7 @@ class Kamar extends Model
         'area',
         'maks_orang',
         'fasilitas',
+        'tempat_tidur',
     ];
 
 

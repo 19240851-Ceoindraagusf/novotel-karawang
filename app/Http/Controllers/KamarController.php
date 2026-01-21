@@ -41,6 +41,7 @@ class KamarController extends Controller
             'area'        => 'nullable|string',
             'maks_orang'  => 'nullable|integer',
             'fasilitas'   => 'nullable|string',
+            'tempat_tidur' => 'nullable|string',
         ]);
 
         if ($request->hasFile('foto')) {
@@ -87,6 +88,7 @@ class KamarController extends Controller
             'area'        => 'nullable|string',
             'maks_orang'  => 'nullable|integer',
             'fasilitas'   => 'nullable|string',
+            'tempat_tidur' => 'nullable|string',
         ]);
 
         if ($request->hasFile('foto')) {
@@ -98,7 +100,13 @@ class KamarController extends Controller
 
         $kamar->update($data);
 
-        return redirect()->route('kamar.index')
+        $page = $request->get('page');
+        $url = route('kamar.index');
+        if ($page) {
+            $url = $url . '?page=' . intval($page);
+        }
+
+        return redirect()->to($url)
             ->with('success', 'Data kamar berhasil diperbarui');
     }
 
