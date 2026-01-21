@@ -52,15 +52,15 @@
 
                     <h4 style="margin-top:12px;color:#003580">Fitur utama</h4>
                     <ul>
-                        <li>Pemandangan: {{ $kamar->area ? 'Sisi kota / '.$kamar->area : 'Sisi kota' }}</li>
-                        <li>Maks. jumlah orang: {{ $kamar->maks_orang ?? '3' }}</li>
-                        <li>Area: {{ $kamar->area ?? 'Dari 26 m²' }}</li>
                         @if($kamar->fasilitas)
                             @foreach(explode(',', $kamar->fasilitas) as $f)
-                                <li>{{ trim($f) }}</li>
+                                @php $fval = trim($f); @endphp
+                                @if(preg_match('/tempat|area|maks/i', $fval))
+                                    @continue
+                                @endif
+                                <li>{{ $fval }}</li>
                             @endforeach
                         @else
-                            <li>Tempat tidur: Tempat tidur ganda x1</li>
                             <li>Makanan & Minuman: Fasilitas Makan dan Minum</li>
                             <li>Fasilitas pembuat kopi/teh</li>
                             <li>Mini Bar</li>
@@ -76,8 +76,8 @@
                     <dt>Tipe</dt><dd>{{ $kamar->tipe_kamar ?? '-' }}</dd>
                     <dt>Harga</dt><dd>Rp {{ number_format($kamar->harga,0,',','.') }}</dd>
                     <dt>Status</dt><dd>{{ $kamar->status ?? '-' }}</dd>
-                    <dt>Area</dt><dd>Dari 26 m²</dd>
-                    <dt>Maks. Orang</dt><dd>3</dd>
+                    <dt>Area</dt><dd>{{ $kamar->area ?? 'Dari 26 m²' }}</dd>
+                    <dt>Maks. Orang</dt><dd>{{ $kamar->maks_orang ?? '3' }}</dd>
                     <dt>Tempat Tidur</dt><dd>Tempat tidur ganda x1</dd>
                 </dl>
 
