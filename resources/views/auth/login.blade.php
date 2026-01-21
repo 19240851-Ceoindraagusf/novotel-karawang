@@ -41,7 +41,7 @@
 
     body.login-novotel-bg {
         min-height: 100vh;
-        background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=1200&h=800&fit=crop') center/cover no-repeat;
+        background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://www.ahstatic.com/photos/b3z6_ho_00_p_1024x768.jpg') center/cover no-repeat;
         display: flex;
         align-items: center;
         justify-content: center;
