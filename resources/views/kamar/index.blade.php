@@ -220,8 +220,8 @@
 
                         <td>
                             <div class="actions">
-                                <a href="{{ route('kamar.show', $kamar->id) }}" class="btn-sm btn-secondary">Detail</a>
-                                <a href="{{ route('kamar.edit', $kamar->id) }}" class="btn-sm btn-warning">Edit</a>
+                                <a href="{{ route('kamar.show', $kamar->id) }}?page={{ $kamars->currentPage() }}" class="btn-sm btn-secondary">Detail</a>
+                                <a href="{{ route('kamar.edit', $kamar->id) }}?page={{ $kamars->currentPage() }}" class="btn-sm btn-warning">Edit</a>
                                 <form action="{{ route('kamar.destroy', $kamar->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Yakin ingin menghapus?')">
                                     @csrf
                                     @method('DELETE')

@@ -119,6 +119,8 @@
             @csrf
             @method('PUT')
 
+            <input type="hidden" name="page" value="{{ request()->get('page', 1) }}">
+
             <div class="grid">
                 <div>
                     <div class="carousel">
@@ -163,6 +165,7 @@
                         </dd>
                         <dt>Area</dt><dd><input type="text" name="area" value="{{ old('area', $kamar->area) }}"></dd>
                         <dt>Maks. Orang</dt><dd><input type="number" name="maks_orang" value="{{ old('maks_orang', $kamar->maks_orang) }}"></dd>
+                        <dt>Tempat Tidur</dt><dd><input type="text" name="tempat_tidur" value="{{ old('tempat_tidur', $kamar->tempat_tidur) }}"></dd>
                     </dl>
 
                     <div style="margin-top:12px">

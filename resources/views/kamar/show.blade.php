@@ -29,8 +29,8 @@
                 <div class="title">Kamar {{ $kamar->nomor_kamar }} — {{ $kamar->tipe_kamar ?? '-' }}</div>
                 <div class="sub">Rp {{ number_format($kamar->harga,0,',','.') }} · {{ $kamar->status ?? '-' }}</div>
             </div>
-            <div>
-                <a href="{{ route('kamar.index') }}" class="btn back">Kembali ke Daftar</a>
+                <div>
+                <a href="{{ route('kamar.index') }}?page={{ request()->get('page', 1) }}" class="btn back">Kembali ke Daftar</a>
             </div>
         </div>
 
@@ -53,12 +53,8 @@
                     <h4 style="margin-top:12px;color:#003580">Fitur utama</h4>
                     <ul>
                         @if($kamar->fasilitas)
-                            @foreach(explode(',', $kamar->fasilitas) as $f)
-                                @php $fval = trim($f); @endphp
-                                @if(preg_match('/tempat|area|maks/i', $fval))
-                                    @continue
-                                @endif
-                                <li>{{ $fval }}</li>
+                            @foreach(array_filter(array_map('trim', explode(',', $kamar->fasilitas))) as $f)
+                                <li>{{ $f }}</li>
                             @endforeach
                         @else
                             <li>Makanan & Minuman: Fasilitas Makan dan Minum</li>
@@ -78,11 +74,11 @@
                     <dt>Status</dt><dd>{{ $kamar->status ?? '-' }}</dd>
                     <dt>Area</dt><dd>{{ $kamar->area ?? 'Dari 26 m²' }}</dd>
                     <dt>Maks. Orang</dt><dd>{{ $kamar->maks_orang ?? '3' }}</dd>
-                    <dt>Tempat Tidur</dt><dd>Tempat tidur ganda x1</dd>
+                    <dt>Tempat Tidur</dt><dd>{{ $kamar->tempat_tidur ?? 'Tempat tidur ganda x1' }}</dd>
                 </dl>
 
                 <div style="margin-top:12px">
-                    <a href="{{ route('kamar.edit', $kamar->id) }}" class="btn">Edit Kamar</a>
+                    <a href="{{ route('kamar.edit', $kamar->id) }}?page={{ request()->get('page', 1) }}" class="btn">Edit Kamar</a>
                 </div>
             </aside>
         </div>

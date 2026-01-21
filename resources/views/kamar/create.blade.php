@@ -165,6 +165,12 @@
             </div>
 
             <div class="form-group">
+                <label for="tempat_tidur">Tempat Tidur (contoh: Tempat tidur ganda x1)</label>
+                <input type="text" id="tempat_tidur" name="tempat_tidur" value="{{ old('tempat_tidur') }}" placeholder="Contoh: Tempat tidur ganda x1">
+                @error('tempat_tidur')<div class="error">{{ $message }}</div>@enderror
+            </div>
+
+            <div class="form-group">
                 <label for="fasilitas">Fasilitas (pisah dengan koma)</label>
                 <input type="text" id="fasilitas" name="fasilitas" value="{{ old('fasilitas') }}" placeholder="Contoh: Mini Bar, Pembuat kopi/teh, AC">
                 @error('fasilitas')<div class="error">{{ $message }}</div>@enderror
